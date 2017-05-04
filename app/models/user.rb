@@ -3,4 +3,9 @@ belongs_to :booking, optional: true
 belongs_to :message, optional: true
 has_many :yards
 has_many :comments
+
+has_secure_password
+
+validates :password, presence: true,
+length: { minimum: 3, maximum: 25 }, on: :create
 end
