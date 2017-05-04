@@ -1,0 +1,21 @@
+<h1><%=@yard.title%></h1>
+<p><%= @yard.rating || 0 %> stars by <%= @yard.r_count || 0%> people</p>
+<%= image_tag('http://i.imgur.com/5gkUOut.jpg')%><br />
+<%= @yard.description%><br/>
+<%if @yard.kid_and_pet_friendly%>
+<p>Kid and Pet friendly!</p>
+<%else%>
+<p>No pets or kids sadly</p>
+<%end%>
+<%if @yard.fire_friendly%>
+<p>Campfires allowed!</p>
+<%else%>
+<p>No campfires</p>
+<%end%>
+<%= @yard.city %>
+<%= @yard.zipcode%>
+<br />
+<h4>Owner:<%= @yard.user.name%></h4>
+<% if (logged_in? && @curr_user.id != current_user.id.to_s)%>
+<%= button_to 'camp here', new_booking_path_url(@yard, @currUser), method: 'get', controller: 'bookings'%>
+<%end%>

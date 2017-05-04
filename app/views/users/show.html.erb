@@ -1,5 +1,8 @@
 <h1>Profile Info</h1>
+<%if logged_in? && @curr_user.id == current_user.id%>
 <%= link_to 'Edit Profile',edit_user_path_url(@curr_user)%><br />
+<%end%>
+<%= image_tag('http://i.imgur.com/IulSm39.jpg')%><br />
 <%= @curr_user.name%><br />
 <%= @curr_user.email%><br />
 <%= @curr_user.age%><br />
@@ -16,15 +19,37 @@
 <%end%>
 <%= @curr_user.gear%><br />
 <br />
-<h1>My yards</h1><%= link_to 'Add a yard', new_yard_path_url%>
-<br />
-<br />
+<h1>My yards</h1>
+  <%if logged_in? && @curr_user.id == current_user.id%>
+    <%= link_to new_yard_path_url, :method=>'get' do %>
+    <h3><span class="cart glyphicon glyphicon-plus"></span></h3>
+  <%end%>
+<%end%>
 <% @yards.each do |yard|%>
-  <%= yard.title%><br />
+<%=link_to yard_path_url(yard) do %>
+<%= image_tag('http://i.imgur.com/5gkUOut.jpg')%>
+<%end%>
+    <h3><%= yard.title%></h3>
   <%= yard.description%><br />
   <%if yard.kid_and_pet_friendly%>
     <p>Kid and Pet friendly!</p>
   <%else%>
     <p>No pets or kids sadly</p>
   <%end%>
+  <%if yard.fire_friendly%>
+    <p>Campfires allowed!</p>
+  <%else%>
+    <p>No campfires</p>
+  <%end%>
+  <%= yard.city %>
+  <%= yard.zipcode%>
+  <%if logged_in? && @curr_user.id == current_user.id%>
+  <%= link_to destroy_yard_path_url(yard), :method=>'delete' do %>
+  <h3><span class="glyphicon glyphicon-remove"></span></h3>
+  <%end%>
+  <%= link_to edit_yard_path_url(yard), :method=>'get' do %>
+  <h3><span class=" glyphicon glyphicon-pencil"></span></h3>
+  <% end %>
+  <%end%>
+  <hr />
 <%end%>

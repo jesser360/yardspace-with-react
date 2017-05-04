@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170504191805) do
+ActiveRecord::Schema.define(version: 20170504215548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,8 +26,10 @@ ActiveRecord::Schema.define(version: 20170504191805) do
     t.boolean  "pets_or_kids"
     t.date     "start_date"
     t.date     "end_date"
+    t.integer  "yard_id"
     t.index ["camper_id"], name: "index_bookings_on_camper_id", using: :btree
     t.index ["host_id"], name: "index_bookings_on_host_id", using: :btree
+    t.index ["yard_id"], name: "index_bookings_on_yard_id", using: :btree
   end
 
   create_table "comments", force: :cascade do |t|
@@ -80,6 +82,7 @@ ActiveRecord::Schema.define(version: 20170504191805) do
     t.index ["user_id"], name: "index_yards_on_user_id", using: :btree
   end
 
+  add_foreign_key "bookings", "yards"
   add_foreign_key "comments", "users"
   add_foreign_key "comments", "yards"
   add_foreign_key "yards", "users"

@@ -2,16 +2,22 @@ Rails.application.routes.draw do
 
 
   get '/users/:id', to: 'users#show', as: 'user_path'
+  get '/signup' => 'users#new'
   get '/users/edit/:id', to: 'users#edit', as: 'edit_user_path'
   patch 'users/update/:id', to: 'users#update', as: 'update_user_path'
+  post '/signup' => 'users#create'
 
+  get 'yards/show/:id', to: 'yards#show', as: 'yard_path'
+  get 'yards/edit/:id', to: 'yards#edit', as: 'edit_yard_path'
   get '/yards/new', to: 'yards#new', as: 'new_yard_path'
   post 'yards', to: 'yards#create', as: 'create_yard_path'
+  delete 'yards/destroy/:id', to: 'yards#destroy', as: 'destroy_yard_path'
+  patch 'yards/update/:id', to: 'yards#update', as: 'update_yard_path'
+
+  get '/bookings/new', to: 'bookings#new', as: 'new_booking_path'
 
   get '/' => 'pages#home'
-  get '/signup' => 'users#new'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'
-  post '/signup' => 'users#create'
 end

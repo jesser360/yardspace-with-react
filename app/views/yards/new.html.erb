@@ -14,8 +14,25 @@
           <%= f.label :description, 'Description' %><br>
           <%= f.text_area :description, placeholder: "tell people how great your yard is", class: "form-control" %>
           <br/>
+          <label>Select a city</label>
+          <select id="cityDropdown" class="form-control" name="yard[city]">
+            <option value=-1></option>
+            <option value=0>Sf-Bay Area</option>
+            <option value=1>Santa Cruz</option>
+            <option value=2>Lake Tahoe</option>
+            <option value=3>Yosemite</option>
+            <option value=4>Los Angeles</option>
+            <option value=5>Santa Barbara</option>
+            <option value=6>Sonoma</option>
+          </select>
+          <%= f.label :zipcode, 'Provide zipcode for better accuracy' %><br>
+          <%= f.number_field :zipcode, class: "form-control" %>
+          <br/>
           <%= f.label :kid_and_pet_friendly, 'Kids and Pets ok?' %><br>
           <%= f.check_box :kid_and_pet_friendly, class: "form-control" %>
+          <br/>
+          <%= f.label :fire_friendly, 'What about campfires?' %><br>
+          <%= f.check_box :fire_friendly, class: "form-control" %>
           <br/>
           <%= f.submit "Add yard", class: 'btn btn-primary btn-md center-block', align:"right" %>
         </div>

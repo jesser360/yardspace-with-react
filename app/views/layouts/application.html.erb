@@ -10,6 +10,11 @@
 
   <body>
     <%= render 'partials/navbar' %>
+    <% flash.each do |name, msg| %>
+  <div class="myAlert<% if name==" error" %> alert-danger <% elsif name==" success" %> alert-success <% else %> alert-info <% end %>">
+    <%= msg %>
+  </div>
+<% end %>
     <%= yield %>
   </body>
 </html>

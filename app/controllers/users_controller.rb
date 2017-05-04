@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @curr_user = User.find_by_id(current_user.id.to_s)
+    @curr_user = User.find_by_id(params[:id])
     @yards = @curr_user.yards
   end
 

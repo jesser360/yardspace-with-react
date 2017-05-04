@@ -1,0 +1,24 @@
+<h1 align="center">Edit your yard!</h1>
+<%= form_for @yard, html: { multipart: true }, :url => update_yard_path_url(@yard) do |f| %>
+<div class="container form-group">
+    <div class="col align-self-center">
+          <h3>Your tent is locked in <%= @yard.city%></h3>
+      <%= f.label :title, 'Title' %><br>
+      <%= f.text_field :title, class: "form-control", placeholder: "quick title for yard" %>
+      <br/>
+      <%= f.label :description, 'Description' %><br>
+      <%= f.text_area :description, placeholder: "tell people how great your yard is", class: "form-control" %>
+      <br/>
+      <%= f.label :zipcode, 'Provide zipcode for better accuracy' %><br>
+      <%= f.number_field :zipcode, class: "form-control" %>
+      <br/>
+      <%= f.label :kid_and_pet_friendly, 'Kids and Pets ok?' %><br>
+      <%= f.check_box :kid_and_pet_friendly, class: "form-control" %>
+      <br/>
+      <%= f.label :fire_friendly, 'What about campfires?' %><br>
+      <%= f.check_box :fire_friendly, class: "form-control" %>
+      <br/>
+      <%= f.submit "Save Changes", class: 'btn btn-success btn-md center-block', align:"right" %>
+      <%end%>
+    </div>
+</div>
