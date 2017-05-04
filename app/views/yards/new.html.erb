@@ -1,0 +1,26 @@
+<h1 align="center">Create a new trade yard!</h1>
+
+<br>
+
+<div class="container" >
+  <div class="col-md-12">
+    <%= form_for Yard.new, :url => create_yard_path_url(@yard)  do |f|%>
+      <div class="container" >
+        <div class="form-group" id="newYardForm">
+
+          <%= f.label :title, 'Title' %><br>
+          <%= f.text_field :title, class: "form-control", placeholder: "quick title for yard" %>
+          <br/>
+          <%= f.label :description, 'Description' %><br>
+          <%= f.text_area :description, placeholder: "tell people how great your yard is", class: "form-control" %>
+          <br/>
+          <%= f.label :kid_and_pet_friendly, 'Kids and Pets ok?' %><br>
+          <%= f.check_box :kid_and_pet_friendly, class: "form-control" %>
+          <br/>
+          <%= f.submit "Add yard", class: 'btn btn-primary btn-md center-block', align:"right" %>
+        </div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

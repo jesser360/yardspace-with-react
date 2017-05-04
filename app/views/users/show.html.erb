@@ -1,9 +1,30 @@
-<%= @currUser.name%><br />
-<%= @currUser.email%><br />
-<%= @currUser.age%><br />
-<%= @currUser.bio%><br />
-<%= @currUser.is_hosting%><br />
-<%= @currUser.is_traveling%><br />
-<%= @currUser.gear%><br />
-
-<%= link_to 'Edit Profile',edit_user_path_url(@currUser)%>
+<h1>Profile Info</h1>
+<%= link_to 'Edit Profile',edit_user_path_url(@curr_user)%><br />
+<%= @curr_user.name%><br />
+<%= @curr_user.email%><br />
+<%= @curr_user.age%><br />
+<%= @curr_user.bio%><br />
+<%if @curr_user.is_hosting%>
+    <p>they are hosting campers!</p>
+    <%else%>
+     <p>not hosting at the moment</p>
+ <%end%>
+<%if @curr_user.is_traveling%>
+   <p>looking for places to camp</p>
+   <%else%>
+    <p>not looking to camp right now</p>
+<%end%>
+<%= @curr_user.gear%><br />
+<br />
+<h1>My yards</h1><%= link_to 'Add a yard', new_yard_path_url%>
+<br />
+<br />
+<% @yards.each do |yard|%>
+  <%= yard.title%><br />
+  <%= yard.description%><br />
+  <%if yard.kid_and_pet_friendly%>
+    <p>Kid and Pet friendly!</p>
+  <%else%>
+    <p>No pets or kids sadly</p>
+  <%end%>
+<%end%>
