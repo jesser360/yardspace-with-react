@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   patch 'yards/update/:id', to: 'yards#update', as: 'update_yard_path'
   get 'cities/:city', to: 'yards#cities', as: 'city_path'
 
+  get '/bookings/sent', to: 'bookings#sent', as: 'sent_bookings_path'
   get '/bookings/new', to: 'bookings#new', as: 'new_booking_path'
+  delete '/bookings/destroy/:id', to: 'bookings#destroy', as: 'destroy_booking_path'
+
+
   post '/bookings', to: 'bookings#create', as: 'create_booking_path'
 
   get '/messages/new', to: 'messages#new', as: 'new_message_path'
