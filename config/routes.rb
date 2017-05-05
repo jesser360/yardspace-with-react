@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   get '/bookings/new', to: 'bookings#new', as: 'new_booking_path'
   post '/bookings', to: 'bookings#create', as: 'create_booking_path'
 
+  get '/messages/new', to: 'messages#new', as: 'new_message_path'
+
   post '/comments', to: 'comments#create', as: 'create_comment_path'
   delete '/comments/destroy/:id', to: 'comments#destroy', as: 'destroy_comment_path'
 

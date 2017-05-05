@@ -17,8 +17,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @curr_user = User.find_by_id(params[:id])
-    @yards = @curr_user.yards
+    @user = User.find_by_id(params[:id])
+    @yards = @user.yards
   end
 
   def edit

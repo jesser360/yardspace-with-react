@@ -1,31 +1,35 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-4">
-      <h2><%= @curr_user.name%></h2>
-      <%if logged_in? && @curr_user.id == current_user.id%>
-      <%= link_to 'Edit Profile',edit_user_path_url(@curr_user)%><br/>
-      <%end%>
+      <h2><%= @user.name%></h2>
       <%= image_tag('http://i.imgur.com/IulSm39.jpg')%><br/>
+      <%if logged_in? && @user.id == current_user.id%>
+      <%= link_to 'Edit Profile',edit_user_path_url(@user)%><br/>
+      <%end%>
+      <%if logged_in? && @user.id != current_user.id%>
+      <%= link_to 'Send Message',new_message_path_url(:user_id => @user.id)%><br/>
+      <%end%>
+
     </div>
     <div class="col-xs-4 text-left">
       <br/><br/>
       <br/><br/>
       <br/><br/>
-      <h4><%= @curr_user.email%></h4>
-      <h4><%= @curr_user.age%></h4>
-      <h4><%= @curr_user.bio%></h4>
-      <h4><%= @curr_user.gear%></h4>
+      <h4><%= @user.email%></h4>
+      <h4><%= @user.age%></h4>
+      <h4><%= @user.bio%></h4>
+      <h4><%= @user.gear%></h4>
     </div>
     <div class="col-xs-4 text-center">
       <br/><br/>
       <br/><br/>
       <br/><br/>
-      <%if @curr_user.is_hosting%>
+      <%if @user.is_hosting%>
       <h4>they are hosting campers!</h4>
       <%else%>
       <h4>not hosting at the moment</h4>
       <%end%>
-      <%if @curr_user.is_traveling%>
+      <%if @user.is_traveling%>
       <h4>looking for places to camp</h4>
       <%else%>
       <h4>not looking to camp right now</h4>
@@ -33,7 +37,7 @@
     </div>
   </div>
   <h1>My yards</h1>
-  <%if logged_in? && @curr_user.id == current_user.id%>
+  <%if logged_in? && @user.id == current_user.id%>
   <%= link_to new_yard_path_url, :method=>'get' do %>
   <h3>
     <span class="cart glyphicon glyphicon-plus"></span>
@@ -60,7 +64,7 @@
   <%end%>
   <%= yard.city %>
   <%= yard.zipcode%>
-  <%if logged_in? && @curr_user.id == current_user.id%>
+  <%if logged_in? && @user.id == current_user.id%>
   <%= link_to destroy_yard_path_url(yard), :method=>'delete' do %>
   <h3>
     <span class="glyphicon glyphicon-remove"></span>
