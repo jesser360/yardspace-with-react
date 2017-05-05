@@ -1,0 +1,26 @@
+<%if @yards.present?%>
+<h1 class="text-center">welcome_to the <%=@yards[0].city%> page</h1>
+<%@yards.each do |yard|%>
+<%=link_to yard_path_url(yard) do %>
+<%= image_tag('http://i.imgur.com/5gkUOut.jpg')%>
+<%end%>
+    <h3><%= yard.title%></h3>
+  <%= yard.description%><br />
+  <%if yard.kid_and_pet_friendly%>
+    <p>Kid and Pet friendly!</p>
+  <%else%>
+    <p>No pets or kids sadly</p>
+  <%end%>
+  <%if yard.fire_friendly%>
+    <p>Campfires allowed!</p>
+  <%else%>
+    <p>No campfires</p>
+  <%end%>
+  <%= yard.zipcode%>
+<%end%>
+<%else%>
+<h3>OMG, no yards in this city, be the first</h3>
+<%if logged_in?%>
+<%= button_to 'post your yard',new_yard_path_url, :method=>'get'%>
+<%end%>
+<%end%>

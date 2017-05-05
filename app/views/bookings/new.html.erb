@@ -1,0 +1,42 @@
+<div class="container">
+<h1>Create a new Booking</h1>
+  <div class="row">
+    <div class="col-md-6">
+      <h5>Yard you want to camp at:<%= @yard.title%></h5>
+      <%= image_tag('http://i.imgur.com/5gkUOut.jpg ')%>
+    </div>
+    <div class="col-md-6">
+      <h5>Host:<%= @host.name%> </h5>
+      <%= image_tag('http://i.imgur.com/IulSm39.jpg')%>
+    </div>
+</div>
+</hr><br /><br />
+
+<%= form_for @booking,  :url => create_booking_path_url(@booking), html: {method: :post} do |f| %>
+<div class="form-group row">
+    <div class="control-label col-sm-4">
+        <%= f.label :group_size, 'Group Size' %>
+    </div>
+    <div class="col-sm-8">
+        <%= f.number_field :group_size, class: "form-control", autofocus: true %>
+    </div>
+  </div>
+<div class="form-group row">
+    <div class ="col-md-6 ">
+        <%= f.label :start_date, 'Arrival Date' %>
+        <%= f.date_select :start_date, 'data-behaviour' => 'datepicker' %>
+      </div>
+      <div class ="col-md-6 ">
+        <%= f.label :end_date, 'Departure Date' %>
+        <%= f.date_select :end_date, 'data-behaviour' => 'datepicker' %>
+
+
+      </div>
+</div>
+<div class="form-group row ">
+    <div class="col-md-12">
+        <%= f.button :submit, name: "yard_id", value: @yard.id%>
+    </div>
+</div>
+<%end%>
+</div>

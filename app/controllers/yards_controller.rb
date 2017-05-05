@@ -4,6 +4,10 @@ def new
   @yard = Yard.new
 end
 
+def cities
+  @yards = Yard.where(city: params[:city])
+end
+
 def create
   @curr_user = User.find_by_id(current_user.id.to_s)
   @yard = Yard.new()
@@ -23,8 +27,12 @@ def create
 end
 
 def show
-  @yard = Yard.find_by_id(params[:id])
+  if(logged_in?)
+  @comment = Comment.new()
   @curr_user = User.find_by_id(current_user.id.to_s)
+  end
+  @yard = Yard.find_by_id(params[:id])
+  @comments = Comment.where(yard_id: @yard.id.to_s)
 end
 
 def destroy

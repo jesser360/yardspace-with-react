@@ -10,7 +10,19 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require bootstrap-datepicker
+ *= require_tree .
+ *= require_self
+
  */
 
- @import "bootstrap";
- @import "bootstrap-sprockets";
+.comment-box{
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-bottom: 35px;
+  padding: 10px;
+  border: 1px solid gray;
+}
+.add-comment-box{
+  margin-left: 25px;
+}
