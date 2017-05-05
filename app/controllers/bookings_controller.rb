@@ -1,6 +1,8 @@
 class BookingsController < ActionController::Base
 
+
 def new
+  @curr_user = User.find_by_id(session[:user_id]) if session[:user_id]
   @booking = Booking.new
   @yard = Yard.find_by_id(params[:yard_id.to_s])
   @host = User.find_by_id(@yard.user.id.to_s)
