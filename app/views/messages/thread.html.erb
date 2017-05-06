@@ -18,23 +18,21 @@
     <%= msg %>
   </div>
   <% end %>
-  <div class ="container">
-<h1>Message inbox</h1>
-<%@unique_user.each do |uq_user|%>
-<div class ="message-thread row">
-  <div class ="col-xs-4">
-    <h3><%=uq_user.name%></h3>
-    <%=link_to user_path_url(uq_user) do %>
-    <%= image_tag('http://i.imgur.com/IulSm39.jpg')%><br/>
-    <%end%>
-  </div>
-  <div class ="col-xs-4">
-<h3><%= link_to 'See conversation', messages_thread_path_url(uq_user), :method => 'get'%></h3>
-  </div>
-</div>
+  <%=link_to "back to inbox", messages_path_url(@curr_user)%>
+<h1>Thread with<%=@other_user.name%></h1>
+<% @all_messages.each do |msg|%>
+  <% @sender = User.find_by_id(msg.sender_id)%>
+<%= @sender.name%>
+<%= msg.message %>
+<%= msg.created_at%>
+<hr />
 <%end%>
-</div>
 
-</div>
+<h3>Reply to: <%=@other_user.name%></h3>
+<%= form_for(:message, :url => create_message_in_thread_path_url(@message), html: {method: :post}) do |f| %>
+<%= f.text_area :message, placeholder: "Write you message to "+@other_user.name+" here" , :cols => "80", :rows=>"3"%><br />
+<%= f.hidden_field :receiver_id, :value => @other_user.id.to_s%>
+<%= f.submit "post", :controller => 'messages'%>
+<%end%>
 </body>
 </html>

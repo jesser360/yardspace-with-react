@@ -25,7 +25,10 @@ Rails.application.routes.draw do
 
   get '/messages/new', to: 'messages#new', as: 'new_message_path'
   get '/messages/user/:id', to: 'messages#index', as: 'messages_path'
+  get '/messages/thread/user/:id', to: 'messages#thread', as:'messages_thread_path'
   post '/messages', to: 'messages#create', as: 'create_message_path'
+  post '/messages', to: 'messages#reply', as: 'create_message_in_thread_path'
+
 
   post '/comments', to: 'comments#create', as: 'create_comment_path'
   delete '/comments/destroy/:id', to: 'comments#destroy', as: 'destroy_comment_path'
