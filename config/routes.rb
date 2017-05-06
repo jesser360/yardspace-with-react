@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   post '/bookings', to: 'bookings#create', as: 'create_booking_path'
 
   get '/messages/new', to: 'messages#new', as: 'new_message_path'
+  get '/messages/user/:id', to: 'messages#index', as: 'messages_path'
+  post '/messages', to: 'messages#create', as: 'create_message_path'
 
   post '/comments', to: 'comments#create', as: 'create_comment_path'
   delete '/comments/destroy/:id', to: 'comments#destroy', as: 'destroy_comment_path'

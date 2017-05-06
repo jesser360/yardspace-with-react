@@ -16,6 +16,7 @@
  */
  .main-image{
    width: 100%;
+   z-index: -1; 
  }
 
 .comment-box{

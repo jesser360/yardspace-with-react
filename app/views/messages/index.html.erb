@@ -19,41 +19,10 @@
   </div>
   <% end %>
   <div class ="container">
-
-  <div class = "row">
-    <div class = "col-xs-8 text-center">
-<h1>Write a new message</h1>
-<h3>TO: <%=@receiver.name%></h3>
-<%= form_for(:message, :url => create_message_path_url(@message), html: {method: :post}) do |f| %>
-<%= f.text_area :message, placeholder: "Write you message to "+@receiver.name+" here" , :cols => "80", :rows=>"3"%><br />
-<%= f.hidden_field :receiver_id, :value => @receiver.id.to_s%>
-<%= f.submit "post", :controller => 'messages'%>
-</div>
-<div class = "col-xs-4 text-center">
-  <h1><%=@receiver.name%>'s yards</h1>
-<% @yards.each do |yard|%>
-<%=link_to yard_path_url(yard) do %>
-<%= image_tag('http://i.imgur.com/5gkUOut.jpg')%>
+<h1>Message inbox</h1>
+<%@unique_user.each do |user|%>
+<%=user.name%>
 <%end%>
-<h3><%= yard.title%></h3>
-<%= yard.description%><br/>
-<%if yard.kid_and_pet_friendly%>
-<p>Kid and Pet friendly!</p>
-<%else%>
-<p>No pets or kids sadly</p>
-<%end%>
-<%if yard.fire_friendly%>
-<p>Campfires allowed!</p>
-<%else%>
-<p>No campfires</p>
-<%end%>
-<%= yard.city %>
-<%= yard.zipcode%>
-<hr />
-<%end%>
-</div>
-<%end%>
-</div>
 </div>
 
 </div>
