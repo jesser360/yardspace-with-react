@@ -1,12 +1,12 @@
+
 class YardsController < ApplicationController
+  require 'httparty'
+  include HTTParty
 
 def new
   @yard = Yard.new
 end
 
-def cities
-  @yards = Yard.where(city: params[:city])
-end
 
 def create
   @curr_user = User.find_by_id(current_user.id.to_s)
@@ -60,11 +60,48 @@ def update
   end
 end
 
+def cities
+  @yards = Yard.where(city: params[:city])
+  @city = params[:city]
+  weather_hash = fetch_weather params[:city]
+  assign_values(weather_hash)
+end
 
 private
 
 def yard_params
   params.require(:yard).permit(:title, :description, :kid_and_pet_friendly, :fire_friendly, :zipcode, :city, :safety)
 end
+
+
+attr_accessor :temperature, :icon
+def initialize
+
+end
+
+def fetch_weather city
+  puts city
+    if city == 'sf_bay_area'
+      zipcode = 94107
+    elsif city == 'santa_cruz'
+      zipcode = 95060
+    elsif city == 'lake_tahoe'
+      zipcode = 96150
+    elsif city == 'yosemite'
+      zipcode = 95389
+    elsif city == 'santa_barabara'
+      zipcode = 93101
+    elsif city == 'sonoma'
+      zipcode = 95476
+    elsif city == 'los_angeles'
+      zipcode = 90001
+    end
+   @response = HTTParty.get("http://api.openweathermap.org/data/2.5/forecast/daily?zip=#{zipcode}&cnt=10&APPID=56816b6400cf26a5068b34d20251372f")
+ end
+
+
+  def assign_values(weather_hash)
+         @forecast_response = weather_hash.parsed_response['city']
+   end
 
 end
