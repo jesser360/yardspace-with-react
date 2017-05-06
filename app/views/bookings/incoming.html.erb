@@ -47,31 +47,42 @@
     </nav>
     </div>
 
+<h1>Welcome to incoming requests</h1>
 
-<h1 align="center">Edit your yard!</h1>
-<%= form_for @yard, html: { multipart: true }, :url => update_yard_path_url(@yard) do |f| %>
-<div class="container form-group">
-    <div class="col align-self-center">
-          <h3>Your tent is locked in <%= @yard.city%></h3>
-      <%= f.label :title, 'Title' %><br>
-      <%= f.text_field :title, class: "form-control", placeholder: "quick title for yard" %>
-      <br/>
-      <%= f.label :description, 'Description' %><br>
-      <%= f.text_area :description, placeholder: "tell people how great your yard is", class: "form-control" %>
-      <br/>
-      <%= f.label :zipcode, 'Provide zipcode for better accuracy' %><br>
-      <%= f.number_field :zipcode, class: "form-control" %>
-      <br/>
-      <%= f.label :kid_and_pet_friendly, 'Kids and Pets ok?' %><br>
-      <%= f.check_box :kid_and_pet_friendly, class: "form-control" %>
-      <br/>
-      <%= f.label :fire_friendly, 'What about campfires?' %><br>
-      <%= f.check_box :fire_friendly, class: "form-control" %>
-      <br/>
-      <%= f.submit "Save Changes", class: 'btn btn-success btn-md center-block', align:"right" %>
-      <%end%>
-    </div>
-</div>
+<h2>Pending</h2>
+<% if @incoming_pending_bookings.present?%>
+  <% @incoming_pending_bookings.each do |booking|%>
+  <% @camper = User.find_by_id(booking.camper_id)%>
+  <% @yard = Yard.find_by_id(booking.yard_id)%>
+  <h4>camper: <%= @camper.name%> </h4>
+  <h4>yard: <%= @yard.title %> </h4>
+  <h4>group size: <%= booking.group_size %></h4>
+  <h4>kids or pets : <%= booking.pets_or_kids%></h4>
+  <h4>From <%= booking.start_date%> to <%= booking.end_date%></h4>
+  <%= button_to 'Reject', update_booking_path_url(booking, :is_accepted => false, :is_answered => true), :method=>'patch'%>
+  <%= button_to 'Accept', update_booking_path_url(booking, :is_accepted => true, :is_answered => true), :method=>'patch'%>
+
+  <%end%>
+<%else%>
+  <h3>none at the moment!</h3>
+<%end%>
+<br />
+
+<h2>Accepted</h2>
+<% if @incoming_answered_bookings.present?%>
+<% @incoming_answered_bookings.each do |booking|%>
+<% @camper = User.find_by_id(booking.camper_id)%>
+<% @yard = Yard.find_by_id(booking.yard_id)%>
+<h4>camper: <%= @camper.name%> </h4>
+<h4>yard: <%= @yard.title %> </h4>
+<h4>group size: <%= booking.group_size %></h4>
+<h4>kids or pets : <%= booking.pets_or_kids%></h4>
+<h4>From <%= booking.start_date%> to <%= booking.end_date%></h4>
+<%end%>
+<%else%>
+<h3>start accepting campers, it'll be fun i swear!</h3>
+<%end%>
+
 
 </body>
 </html>

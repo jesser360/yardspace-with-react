@@ -6,6 +6,8 @@
       <%if logged_in? && @user.id == current_user.id%>
       <%= link_to 'Edit Profile',edit_user_path_url(@user)%><br/>
       <%= link_to 'sent requests',sent_bookings_path_url(@user)%><br/>
+      <%= link_to 'incoming requests',incoming_bookings_path_url(@user)%><br/>
+      
       <%end%>
       <%if logged_in? && @user.id != current_user.id%>
       <%= link_to 'Send Message',new_message_path_url(:user_id => @user.id)%><br/>

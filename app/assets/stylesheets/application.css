@@ -14,6 +14,9 @@
  *= require_self
  *= require bootstrap-datepicker
  */
+ .main-image{
+   width: 100%;
+ }
 
 .comment-box{
   margin-left: 25px;

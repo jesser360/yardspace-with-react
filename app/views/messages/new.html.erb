@@ -1,8 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>YardSpace</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.5/bootstrap-confirmation.js"></script>
+  </head>
+  <body>
+    <%= render 'partials/navbar' %>
+    <% flash.each do |name, msg| %>
+  <div class="myAlert<% if name==" error" %> alert-danger <% elsif name==" success" %> alert-success <% else %> alert-info <% end %>">
+    <%= msg %>
+  </div>
+  <% end %>
+  <div class = "row">
+    <div class = "col-xs-8 text-center">
 <h1>Write a new message</h1>
 <h3>TO: <%=@receiver.name%></h3>
-<h3>FROM: <%=@sender.name%></h3>
-<h3><%=@receiver.name%>'s available yards</h3>
-<div class = "col-xs-6">
+</div>
+<div class = "col-xs-4 text-center">
+  <h1><%=@receiver.name%>'s yards</h1>
 <% @yards.each do |yard|%>
 <%=link_to yard_path_url(yard) do %>
 <%= image_tag('http://i.imgur.com/5gkUOut.jpg')%>
@@ -21,5 +43,9 @@
 <%end%>
 <%= yard.city %>
 <%= yard.zipcode%>
+<hr />
 <%end%>
 </div>
+</div>
+</body>
+</html>

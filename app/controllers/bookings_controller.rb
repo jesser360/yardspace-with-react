@@ -40,8 +40,20 @@ end
 
 def sent
   @curr_user = User.find_by_id(session[:user_id])
-  @answered_bookings = Booking.where(camper_id: @curr_user.id).where(is_answered: true)
   @pending_bookings = Booking.where(camper_id: @curr_user.id).where(is_answered: false)
+  @answered_bookings = Booking.where(camper_id: @curr_user.id).where(is_answered: true)
+end
+
+def incoming
+  @curr_user = User.find_by_id(session[:user_id])
+  @incoming_pending_bookings = Booking.where(host_id: @curr_user.id).where(is_answered: false)
+  @incoming_answered_bookings = Booking.where(host_id: @curr_user.id).where(is_accepted: true)
+end
+
+def update
+  @booking = Booking.find_by_id(params[:id])
+  @booking.update(update_booking_params)
+  redirect_to :back
 end
 
 private
@@ -51,11 +63,14 @@ def create_booking_params
 end
 
 def booking_params
-  params.require(:booking).permit(:group_size, :start_date, :end_date, :yard_id, :pets_or_kids)
+  params.require(:booking).permit(:group_size, :start_date, :end_date, :yard_id, :pets_or_kids, :is_accepted, :is_answered)
 end
 
 def destroy_booking_params
   params.require(:booking_id)
 end
 
+def update_booking_params
+  params.permit(:is_accepted, :is_answered)
+end
 end
