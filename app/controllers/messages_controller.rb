@@ -1,12 +1,14 @@
 class MessagesController < ActionController::Base
 
 def new
+  @curr_user = User.find_by_id(session[:user_id])
   @sender = User.find_by_id(session[:user_id])
   @receiver = User.find_by_id(params[:user_id])
   @yards = @receiver.yards
 end
 
 def create
+  @curr_user = User.find_by_id(session[:user_id])
   @sender = User.find_by_id(session[:user_id])
   @message = Message.new(create_message_params)
   @message.is_read = false

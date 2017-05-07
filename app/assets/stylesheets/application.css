@@ -14,20 +14,42 @@
  *= require_self
  *= require bootstrap-datepicker
  */
- .main-image{
-   width: 100%;
-   z-index: -1;
+ .main-background{
+   background-image: url("http://i.imgur.com/tqzjbOP.gif");
+   background-size: cover !important;
+   height: 60vw;
+   width:100%;
  }
- .home-text{
-   color:yellow;
-   z-index: 1;
+ .intro-text{
+   color:lightgray;
+   margin:80px;
+   font-family: 'Optima';
  }
-
+ .sign-up-btn{
+   margin-left:350px;
+ }
+ .title{
+   font-size: 60px;
+ }
+.message-box{
+  margin:50px;
+}
+.msg-pic{
+  height:4vw;
+  width:4vw;
+}
+.reply-msg{
+  margin:50px;
+}
+.see-msg-btn{
+  margin-top: 100px;
+}
  .nav{
     width: 100%;
     margin: 0 auto;
     background-color: transparent;
     z-index: 1;
+    font-size: 20px;
  }
  .message-thread{
    border:1px dotted gray;

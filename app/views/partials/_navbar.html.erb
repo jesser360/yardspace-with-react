@@ -1,18 +1,14 @@
-<div class ="container-fluid">
+<div class="container">
 
 <nav id="mainNav" class="nav navbar-default" role="navigation">
   <div class="row" >
+    <div class ="col-xs-2">
     <ul class="nav_padding_right">
-      <%= link_to 'Home', '/'%>
-      <% if User.find_by_id(session[:user_id]) %>
-        <%= link_to 'Profile', user_path_url(User.find_by_id(session[:user_id])) %>
-      <%= link_to 'Log Out', logout_path, method: :delete%>
-      <% else %>
-        <%= link_to 'Log In', login_path %>|
-        <%= link_to 'Sign Up', signup_path %>
-      <% end %>
-
-  <div class="row">
+      <p class ="pull-left"><%= link_to '/' do %>
+      <span class ="glyphicon glyphicon-tent"></span></p>
+      <%end%>
+    </div>
+    <div class ="col-xs-4 pull-left">
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cities <span class="caret"></span></a>
         <ul class="dropdown-menu">
@@ -25,7 +21,30 @@
           <li><%=link_to 'Los Angeles', '/cities/los_angeles', controller: "yards"%></li>
         </ul>
       </li>
-  </div>
-
+    </div>
+    <div class ="col-xs-2">
+      <% if User.find_by_id(session[:user_id]) %>
+        <p class = "pull-right"><%= link_to user_path_url(User.find_by_id(session[:user_id])) do %>
+        <span><%=(User.find_by_id(session[:user_id]).email)%></span><span class="cart glyphicon glyphicon-user"></span></p>
+        <%end%>
+        <%end%>
+      </div>
+      <div class ="col-xs-2">
+        <% if User.find_by_id(session[:user_id]) %>
+          <p class = "pull-right"><%= link_to messages_path_url(User.find_by_id(session[:user_id])) do%>
+            <span>Inbox <span class="cart glyphicon glyphicon-inbox"></span></p>
+          <%end%>
+      <%end%>
+    </div>
+    <div class ="col-xs-2">
+      <p class = "pull-right"><% if User.find_by_id(session[:user_id]) %>
+      <%= link_to 'Log Out', logout_path, method: :delete%>
+      <% else %></p>
+      <p class ="pull-right"><%= link_to 'Log In', login_path %>|
+      <%= link_to 'Sign Up', signup_path %></p>
+      <% end %>
+    </div>
 </nav>
+</div>
+
 </div>

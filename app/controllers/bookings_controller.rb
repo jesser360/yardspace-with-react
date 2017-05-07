@@ -9,6 +9,7 @@ def new
 end
 
 def destroy
+  @curr_user = User.find_by_id(session[:user_id])
   @booking = Booking.find_by_id(params[:id])
   if @booking.destroy
     redirect_to :back
@@ -51,6 +52,7 @@ def incoming
 end
 
 def update
+  @curr_user = User.find_by_id(session[:user_id])
   @booking = Booking.find_by_id(params[:id])
   @booking.update(update_booking_params)
   redirect_to :back

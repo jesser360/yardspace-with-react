@@ -15,39 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.5/bootstrap-confirmation.js"></script>
   </head>
   <body>
-    <div class="container-fluid">
-
-      <nav id="mainNav" class="nav navbar-default" role="navigation">
-        <div class="row">
-          <ul class="nav_padding_right">
-            <%= link_to 'Home', '/'%>
-            <% if @curr_user %>
-            <%= link_to 'Profile', user_path_url(@curr_user) %>
-            <%= link_to 'Log Out', logout_path, method: :delete%>
-          <% else %>
-            <%= link_to 'Log In', login_path %>|
-            <%= link_to 'Sign Up', signup_path %>
-            <% end %>
-
-            <div class="row">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cities
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%=link_to 'SF-Bay Area', '/cities/sf_bay_area', controller: "yards"%></li>
-                  <li><%=link_to 'Santa Cruz', '/cities/santa_cruz', controller: "yards"%></li>
-                  <li><%=link_to 'Lake Tahoe', '/cities/lake_tahoe', controller: "yards"%></li>
-                  <li><%=link_to 'Yosemite', '/cities/yosemite', controller: "yards"%></li>
-                  <li><%=link_to 'Santa Barbara', '/cities/santa_barabara', controller: "yards"%></li>
-                  <li><%=link_to 'Sonoma', '/cities/sonoma', controller: "yards"%></li>
-                  <li><%=link_to 'Los Angeles', '/cities/los_angeles', controller: "yards"%></li>
-                </ul>
-              </li>
-            </div>
-
-          </nav>
-        </div>
+    <%= render 'partials/navbar' %>
 
         <div class="container">
           <div class="row">
@@ -66,33 +34,33 @@
                 <p>No pets or kids sadly</p>
                 <%end%>
                 <%if @yard.fire_friendly%>
-                <p>Campfires allowed!</p>
-                <%else%>
-                <p>No campfires</p>
+                <span class = "glyphicon glyphicon-fire"></span><br />
                 <%end%>
                 <%= @yard.city %>
                 <%= @yard.zipcode%>
               </br>
               <% if (logged_in? && @curr_user.id.to_s != @yard.user.id.to_s)%>
-              <%= link_to 'camp here', new_booking_path_url(yard_id: @yard.id), :controller => 'bookings', :method => 'get' %>
+              <%= link_to new_booking_path_url(yard_id: @yard.id), :controller => 'bookings', :method => 'get' do %>
+                <h3><span class ="glyphicon glyphicon-tent"></span><span>Camp Here!</span></h3>
+                <%end%>
               <%end%>
             </div>
             <div class="col-md-6">
-              <h4>Owner:<%= @yard.user.name%></h4>
+              <h4><%= @yard.user.name%></h4>
               <%=link_to user_path_url(@yard.user) do %>
               <%= image_tag('http://i.imgur.com/IulSm39.jpg')%><br/>
               <%end%>
               <% if (logged_in? && @curr_user.id.to_s != @yard.user.id.to_s)%>
-              <%= link_to 'Send Message',new_message_path_url(:user_id => @yard.user.id)%><br/>
-              <%else%>
-              <%= link_to 'My Messages',messages_path_url(@curr_user)%><br/>
+              <%= link_to new_message_path_url(:user_id => @yard.user.id) do%>
+              <h2><span class = "glyphicon glyphicon-envelope"></span></h2>
+              <%end%>
+              <%end%>
             </div>
-            <%end%>
           </div>
           <div class="row">
             <h2 class="text-center">Comments</h2>
             <% if logged_in?%>
-            <div class="add-comment-box">
+            <div class="add-comment-box text-center">
               <%= form_for(:comment, :url => create_comment_path_url(@comment), html: {method: :post}) do |f| %>
               <%= f.text_area :title, placeholder: "title", :cols => "50", :rows=>"1"%><br/>
               <%= f.text_area :body, placeholder: "write a review about "+ @yard.title, :cols => "80", :rows=>"2"%>
@@ -108,10 +76,10 @@
               <h3><%= comment.title%></h3>
               <h4><%= comment.body%>
                 by:
-                <%= comment.user.name%></h4>
+                <%= comment.user.name%>
               <% if (logged_in? && @curr_user.id.to_s == comment.user.id.to_s)%>
               <%= link_to destroy_comment_path_url(comment), :method=>'delete' do %>
-              <span class="glyphicon glyphicon-remove" style="color:red"></span>
+              <span class="glyphicon glyphicon-remove" style="color:red"></span></h4>
               <%end%>
               <%end%>
               <%end%>

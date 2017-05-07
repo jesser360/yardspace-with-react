@@ -15,39 +15,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.5/bootstrap-confirmation.js"></script>
   </head>
   <body>
-    <div class="container-fluid">
-
-      <nav id="mainNav" class="nav navbar-default" role="navigation">
-        <div class="row">
-          <ul class="nav_padding_right">
-            <%= link_to 'Home', '/'%>
-            <% if @curr_user %>
-            <%= link_to 'Profile', user_path_url(@curr_user) %>
-            <%= link_to 'Log Out', logout_path, method: :delete%>
-          <% else %>
-            <%= link_to 'Log In', login_path %>|
-            <%= link_to 'Sign Up', signup_path %>
-            <% end %>
-
-            <div class="row">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cities
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%=link_to 'SF-Bay Area', '/cities/sf_bay_area', controller: "yards"%></li>
-                  <li><%=link_to 'Santa Cruz', '/cities/santa_cruz', controller: "yards"%></li>
-                  <li><%=link_to 'Lake Tahoe', '/cities/lake_tahoe', controller: "yards"%></li>
-                  <li><%=link_to 'Yosemite', '/cities/yosemite', controller: "yards"%></li>
-                  <li><%=link_to 'Santa Barbara', '/cities/santa_barabara', controller: "yards"%></li>
-                  <li><%=link_to 'Sonoma', '/cities/sonoma', controller: "yards"%></li>
-                  <li><%=link_to 'Los Angeles', '/cities/los_angeles', controller: "yards"%></li>
-                </ul>
-              </li>
-            </div>
-
-          </nav>
-        </div>
+    <%= render 'partials/navbar' %>
 
         <div class="row text-center weather">
           <div class="col-xs-2">
@@ -112,20 +80,17 @@
         <%if @yards.present?%>
           <%@yards.each do |yard|%>
           <%if yard.user.is_hosting == true%>
+          <h3><%= yard.title%></h3>
             <%=link_to yard_path_url(yard) do %>
               <%= image_tag('http://i.imgur.com/5gkUOut.jpg')%>
             <%end%>
-          <h3><%= yard.title%></h3>
-          <%= yard.description%><br/>
           <%if yard.kid_and_pet_friendly%>
             <p>Kid and Pet friendly!</p>
           <%else%>
             <p>No pets or kids sadly</p>
           <%end%>
           <%if yard.fire_friendly%>
-            <p>Campfires allowed!</p>
-          <%else%>
-            <p>No campfires</p>
+            <span class = "glyphicon glyphicon-fire"></span><br />
           <%end%>
           <%= yard.zipcode%>
         <hr/>

@@ -15,37 +15,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.5/bootstrap-confirmation.js"></script>
   </head>
   <body>
-    <div class ="container-fluid">
+    <%= render 'partials/navbar' %>
 
-    <nav id="mainNav" class="nav navbar-default" role="navigation">
-      <div class="row" >
-        <ul class="nav_padding_right">
-          <%= link_to 'Home', '/'%>
-          <% if @curr_user %>
-            <%= link_to 'Profile', user_path_url(@curr_user) %>
-          <%= link_to 'Log Out', logout_path, method: :delete%>
-          <% else %>
-            <%= link_to 'Log In', login_path %>|
-            <%= link_to 'Sign Up', signup_path %>
-          <% end %>
-
-      <div class="row">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cities <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><%=link_to 'SF-Bay Area', '/cities/sf_bay_area', controller: "yards"%></li>
-              <li><%=link_to 'Santa Cruz', '/cities/santa_cruz', controller: "yards"%></li>
-              <li><%=link_to 'Lake Tahoe', '/cities/lake_tahoe', controller: "yards"%></li>
-              <li><%=link_to 'Yosemite', '/cities/yosemite', controller: "yards"%></li>
-              <li><%=link_to 'Santa Barbara', '/cities/santa_barabara', controller: "yards"%></li>
-              <li><%=link_to 'Sonoma', '/cities/sonoma', controller: "yards"%></li>
-              <li><%=link_to 'Los Angeles', '/cities/los_angeles', controller: "yards"%></li>
-            </ul>
-          </li>
-      </div>
-
-    </nav>
-    </div>
 
 <h1>Welcome to incoming requests</h1>
 

@@ -18,21 +18,35 @@
     <%= msg %>
   </div>
   <% end %>
-  <%=link_to "back to inbox", messages_path_url(@curr_user)%>
-<h1>Thread with<%=@other_user.name%></h1>
+  <%=link_to messages_path_url(@curr_user) do %>
+  <h3><span class ="glyphicon glyphicon-arrow-left"</span><span>Back2Inbox</span></h3>
+  <%end%>
+<h1>Messages with <%=@other_user.name%></h1>
+<br />
+<div class ="message-box row">
 <% @all_messages.each do |msg|%>
-  <% @sender = User.find_by_id(msg.sender_id)%>
-<%= @sender.name%>
-<%= msg.message %>
-<%= msg.created_at%>
-<hr />
+<% @sender = User.find_by_id(msg.sender_id)%>
+<div class = "col-xs-2 text-center">
+  <%=link_to user_path_url(@sender) do %>
+  <img class="msg-pic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
+  <%end%>
+    <hr />
+</div>
+<div class ="col-xs-10">
+  <h4><%= @sender.name%>:
+      <%= msg.message %></h4>
+  <h6><%= msg.created_at%></h6>
+  <hr />
+</div>
 <%end%>
-
+</div>
+<div class ="reply-msg">
 <h3>Reply to: <%=@other_user.name%></h3>
 <%= form_for(:message, :url => create_message_in_thread_path_url(@message), html: {method: :post}) do |f| %>
 <%= f.text_area :message, placeholder: "Write you message to "+@other_user.name+" here" , :cols => "80", :rows=>"3"%><br />
 <%= f.hidden_field :receiver_id, :value => @other_user.id.to_s%>
 <%= f.submit "post", :controller => 'messages'%>
 <%end%>
+</div>
 </body>
 </html>

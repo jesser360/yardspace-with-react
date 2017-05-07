@@ -4,14 +4,16 @@
       <h2><%= @user.name%></h2>
       <%= image_tag('http://i.imgur.com/IulSm39.jpg')%><br/>
       <%if logged_in? && @user.id == current_user.id%>
-      <%= link_to 'Edit Profile',edit_user_path_url(@user)%><br/>
-      <%= link_to 'sent requests',sent_bookings_path_url(@user)%><br/>
-      <%= link_to 'incoming requests',incoming_bookings_path_url(@user)%><br/>
-      <%= link_to 'My Messages',messages_path_url(@user)%><br/>
+          <%= link_to 'Edit Profile',edit_user_path_url(@user)%><br/>
+          <%= link_to 'sent requests',sent_bookings_path_url(@user)%><br/>
+          <%= link_to 'incoming requests',incoming_bookings_path_url(@user)%><br/>
 
-      <%end%>
+      <%else%>
       <%if logged_in? && @user.id != current_user.id%>
-      <%= link_to 'Send Message',new_message_path_url(:user_id => @user.id)%><br/>
+      <%= link_to new_message_path_url(:user_id => @user.id) do%>
+       <h2><span class = "glyphicon glyphicon-envelope"></span></h2>
+      <%end%>
+        <%end%>
       <%end%>
 
     </div>
@@ -40,7 +42,7 @@
       <%end%>
     </div>
   </div>
-  <h1>My yards</h1>
+  <h1> yards</h1>
   <%if logged_in? && @user.id == current_user.id%>
   <%= link_to new_yard_path_url, :method=>'get' do %>
   <h3>
