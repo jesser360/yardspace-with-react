@@ -19,29 +19,35 @@
     <br /><br /><br />
         <div class="container">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-xs-5">
+              <h1><%=@yard.title%></h1>
                   <img class="show-yard-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
             </div>
-            <div class="col-md-4">
-                  <h1><%=@yard.title%></h1>
+            <div class="col-xs-4 yard-info">
                   <%if @yard.r_count == 0%>
                   <%@stars = @yard.rating / 1%>
                   <%else%>
-                  <%@stars = @yard.rating / @yard.rcount%>
+                  <%@stars = @yard.rating / @yard.r_count%>
                   <%end%>
-                  <p><%= @stars %> stars</p>
-              <%= @yard.description%>
+                  <h3><%= @stars %>/10 rating by <%=@yard.r_count%> users</h3>
+
+             <%= form_for @yard, :class => 'form-group', :url => update_rating_yard_path_url(@yard) do |f| %>
+                <%= f.label :rating %>
+                <%= f.number_field :rating, :value => 0, :max => 10, :min => 1, :class=>"mx-sm-3" %>
+                <%= f.submit "Rate", :class => "text-muted btn-primary btn-xs" %>
+              <% end %>
+
+              <h3><%= @yard.description%></h3>
               <br>
                 <%if @yard.kid_and_pet_friendly%>
-                <p>Kid and Pet friendly!</p>
+                <h3>Kid and Pet friendly!</h3>
                 <%else%>
-                <p>No pets or kids sadly</p>
+                <h3>No pets or kids sadly</h3>
                 <%end%>
                 <%if @yard.fire_friendly%>
-                <span class = "glyphicon glyphicon-fire"></span><br />
+                <h3><span class = "glyphicon glyphicon-fire"></span></h3>
                 <%end%>
-                <%= @yard.city %>
-                <%= @yard.zipcode%>
+                <h4><%= @yard.city %></h4>
               </br>
               <% if (logged_in? && @curr_user.id.to_s != @yard.user.id.to_s)%>
               <%= link_to new_booking_path_url(yard_id: @yard.id), :controller => 'bookings', :method => 'get' do %>
@@ -49,10 +55,12 @@
                 <%end%>
               <%end%>
             </div>
-            <div class="col-md-4">
+            <div class="col-xs-3 prof-yard-show">
               <h3><%= @yard.user.name%></h3>
+              <h4><%= @yard.user.yards.count.to_i - 1%> more available yards</h4>
               <%=link_to user_path_url(@yard.user) do %>
-              <%= image_tag('http://i.imgur.com/IulSm39.jpg')%><br/>
+              <img class="show-yard-pic profilePic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
+
               <%end%>
               <% if (logged_in? && @curr_user.id.to_s != @yard.user.id.to_s)%>
               <%= link_to new_message_path_url(:user_id => @yard.user.id) do%>

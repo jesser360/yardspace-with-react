@@ -15,10 +15,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.5/bootstrap-confirmation.js"></script>
   </head>
   <body>
-    <div class ="container-fluid">
       <%= render 'partials/navbar' %>
-
-
+      <br /><br />
+      <div class ="container">
+        <%=link_to user_path_url(@curr_user) do %>
+        <h3><span class ="glyphicon glyphicon-arrow-left"</span><span>Back2Profile</span></h3>
+        <%end%>
 <h1>sent camping requests</h1>
 <h2>Pending</h2>
 <% if @pending_bookings.present?%>
@@ -28,11 +30,28 @@
       <%end%>
   <% @host = User.find_by_id(booking.host_id)%>
   <% @yard = Yard.find_by_id(booking.yard_id)%>
+  <div class ="row">
+    <div class ="col-xs-4">
   <h4>host: <%= @host.name%> </h4>
+  <%=link_to user_path_url(@host) do %>
+  <img class="booking-prof-pic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
+  <%end%>
+</div>
+<div class ="col-xs-4">
   <h4>yard: <%= @yard.title %> </h4>
-  <h4>location: <%= @yard.zipcode %></h4>
-  <h4> Status : <%= booking.is_accepted%></h4>
+  <%=link_to yard_path_url(@yard) do %>
+  <img class="booking-yard-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+  <%end%>
+  <h4>location: <%= @yard.city %></h4>
+</div>
+<div class ="col-xs-4">
   <h4>From <%= booking.start_date%> to <%= booking.end_date%></h4>
+  <%= calendar start_date_param: booking.start_date.to_s do |date| %>
+    <%= date %>
+  <% end %>
+</div>
+</div>
+<hr />
   <%end%>
 <%else%>
   <h3>none yet, start booking!</h3>
@@ -44,16 +63,38 @@
 <% @answered_bookings.each do |booking|%>
 <% @host = User.find_by_id(booking.host_id)%>
 <% @yard = Yard.find_by_id(booking.yard_id)%>
+<div class ="row">
+  <div class ="col-xs-4">
 <h4>host: <%= @host.name%> </h4>
+<%=link_to user_path_url(@host) do %>
+<img class="booking-prof-pic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
+<%end%>
+</div>
+<div class ="col-xs-4">
 <h4>yard: <%= @yard.title %> </h4>
-<h4>location: <%= @yard.zipcode %></h4>
-<h4> Status : <%= booking.is_accepted%></h4>
+<%=link_to yard_path_url(@yard) do %>
+<img class="booking-yard-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+<%end%>
+<h4>location: <%= @yard.city %></h4>
+</div>
+<div class ="col-xs-4">
+  <%if booking.is_accepted %>
+<h3> Status : <span style = 'color:green'>Accepted!</span></h3>
+<%else%>
+<h3> Status : <span style = 'color:red'>Rejected</span></h3>
+<%end%>
 <h4>From <%= booking.start_date%> to <%= booking.end_date%></h4>
+<%= calendar start_date_param: booking.start_date.to_s do |date| %>
+  <%= date %>
+<% end %>
+</div>
+</div>
+<hr />
 <%end%>
 <%else%>
 <h3>none yet, dont worry, they'll get back to you soon!</h3>
 <%end%>
-
+</div>
 
 </body>
 </html>

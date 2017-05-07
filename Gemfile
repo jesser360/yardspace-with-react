@@ -4,6 +4,8 @@ git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
 end
+gem "simple_calendar", "~> 2.0"
+
 gem 'httparty'
 gem 'bootstrap-datepicker-rails', '~> 0.6.21'
 gem 'bcrypt','~>3.1.7'

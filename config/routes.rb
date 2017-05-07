@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   post '/yards', to: 'yards#create', as: 'create_yard_path'
   delete '/yards/destroy/:id', to: 'yards#destroy', as: 'destroy_yard_path'
   patch 'yards/update/:id', to: 'yards#update', as: 'update_yard_path'
+  patch 'yards/updateRating/:id', to: 'yards#updateRating', as: 'update_rating_yard_path'
   get 'cities/:city', to: 'yards#cities', as: 'city_path'
 
   get '/bookings/incoming', to: 'bookings#incoming', as: 'incoming_bookings_path'

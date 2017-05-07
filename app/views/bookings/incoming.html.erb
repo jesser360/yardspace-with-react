@@ -16,24 +16,47 @@
   </head>
   <body>
     <%= render 'partials/navbar' %>
-
-
-<h1>Welcome to incoming requests</h1>
+    <br /><br />
+    <div class ="container">
+      <%=link_to user_path_url(@curr_user) do %>
+      <h3><span class ="glyphicon glyphicon-arrow-left"</span><span>Back2Profile</span></h3>
+      <%end%>
+<h1>your incoming requests</h1>
 
 <h2>Pending</h2>
 <% if @incoming_pending_bookings.present?%>
   <% @incoming_pending_bookings.each do |booking|%>
   <% @camper = User.find_by_id(booking.camper_id)%>
   <% @yard = Yard.find_by_id(booking.yard_id)%>
+  <div class ="row">
+  <div class ="col-xs-4">
   <h4>camper: <%= @camper.name%> </h4>
-  <h4>yard: <%= @yard.title %> </h4>
-  <h4>group size: <%= booking.group_size %></h4>
-  <h4>kids or pets : <%= booking.pets_or_kids%></h4>
-  <h4>From <%= booking.start_date%> to <%= booking.end_date%></h4>
-  <%= button_to 'Reject', update_booking_path_url(booking, :is_accepted => false, :is_answered => true), :method=>'patch'%>
-  <%= button_to 'Accept', update_booking_path_url(booking, :is_accepted => true, :is_answered => true), :method=>'patch'%>
-
+  <%=link_to user_path_url(@camper) do %>
+  <img class="booking-prof-pic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
   <%end%>
+  <h4>group size: <%= booking.group_size %></h4>
+  <%if booking.pets_or_kids%>
+  <h4>Theyre coming with kids or pets</h4>
+  <%else%>
+  <h4>No kids or pets</h4>
+  <%end%>
+</div>
+<div class ="col-xs-4">
+  <h4>your yard: <%= @yard.title %> </h4>
+  <%=link_to yard_path_url(@yard) do %>
+  <img class="booking-yard-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+  <%end%>
+</div>
+<div class ="col-xs-4">
+  <h4>From <%= booking.start_date%> to <%= booking.end_date%></h4>
+  <%= calendar start_date_param: booking.start_date.to_s do |date| %>
+    <%= date %>
+  <% end %>
+  <h3><%= button_to 'Reject', update_booking_path_url(booking, :is_accepted => false, :is_answered => true), :method=>'patch'%><br />
+  <%= button_to 'Accept', update_booking_path_url(booking, :is_accepted => true, :is_answered => true), :method=>'patch'%></h3>
+  <%end%>
+</div>
+</div>
 <%else%>
   <h3>none at the moment!</h3>
 <%end%>
@@ -44,16 +67,37 @@
 <% @incoming_answered_bookings.each do |booking|%>
 <% @camper = User.find_by_id(booking.camper_id)%>
 <% @yard = Yard.find_by_id(booking.yard_id)%>
+<div class ="row">
+  <div class ="col-xs-4">
 <h4>camper: <%= @camper.name%> </h4>
-<h4>yard: <%= @yard.title %> </h4>
+<%=link_to user_path_url(@yard.user) do %>
+<img class="booking-prof-pic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
+<%end%>
 <h4>group size: <%= booking.group_size %></h4>
-<h4>kids or pets : <%= booking.pets_or_kids%></h4>
+<%if booking.pets_or_kids%>
+<h4>Theyre coming with kids or pets</h4>
+<%else%>
+<h4>No kids or pets</h4>
+<%end%>
+</div>
+<div class ="col-xs-4">
+<h4>your yard: <%= @yard.title %> </h4>
+<%=link_to yard_path_url(@yard) do %>
+<img class="booking-yard-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+<%end%>
+</div>
+<div class ="col-xs-4">
 <h4>From <%= booking.start_date%> to <%= booking.end_date%></h4>
+    <%= calendar start_date_param: booking.start_date.to_s do |date| %>
+      <%= date %>
+    <% end %>
+  </div>
+</div>
+<hr />
 <%end%>
 <%else%>
 <h3>start accepting campers, it'll be fun i swear!</h3>
 <%end%>
-
-
+</div>
 </body>
 </html>

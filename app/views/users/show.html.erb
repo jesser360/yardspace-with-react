@@ -1,3 +1,4 @@
+<br /><br />
 <div class="container">
   <div class="row">
     <div class="col-xs-4 prof-pic">
@@ -30,7 +31,7 @@
     </div>
     <div class="col-xs-4 prof-bookings text-center">
       <%if logged_in? && @user.id == current_user.id%>
-      <h3 class>My Bookings</h3>
+      <h2 class>My Bookings</h2>
       <br /><%= button_to 'sent requests',sent_bookings_path_url(@user), method: 'get', class: 'cool-btn'%><br/>
       <%= button_to 'incoming requests',incoming_bookings_path_url(@user),  method: 'get', class: 'cool-btn'%><br/>
       <%end%>

@@ -62,6 +62,15 @@ def update
   end
 end
 
+def updateRating
+  @curr_user = User.find_by_id(current_user.id.to_s)
+  @yard = Yard.find_by_id(params[:id])
+  @yard.r_count += 1
+  @yard.rating += yard_rating_params[:rating].to_i
+  @yard.save
+  redirect_to :back
+end
+
 def cities
   @curr_user = User.find_by_id(session[:user_id]) if session[:user_id]
   @yards = Yard.where(city: params[:city])
@@ -74,6 +83,10 @@ private
 
 def yard_params
   params.require(:yard).permit(:title, :description, :kid_and_pet_friendly, :fire_friendly, :zipcode, :city, :safety)
+end
+
+def yard_rating_params
+  params.require(:yard).permit(:rating)
 end
 
 

@@ -14,9 +14,13 @@
         </div>
         <div class="row">
           <div class ="col-xs-6 pull-left">
-
-              <a href = "/signup"><button class="btn sign-up-btn btn-primary">Get Started</button></a>
+            <% if logged_in?%>
+            <%=button_to 'Get Started',user_path_url(current_user), :method => 'get', :class => "btn big-btn cool-btn"%>
+            <%else%>
+              <a href = "/signup"><button class="btn big-btn cool-btn">Get Started</button></a>
+              <%end%>
           </div>
       </div>
 
     </div>
+</div>

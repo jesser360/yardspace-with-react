@@ -19,15 +19,16 @@
    background-size: cover !important;
    height: 60vw;
    width:100%;
+   margin-top: -60px;
  }
  .intro-text{
    color:lightgray;
-   margin:80px;
+   margin-top:180px;
+   margin-bottom: 70px;
+   margin-left: 30px;
    font-family: 'Optima';
  }
- .sign-up-btn{
-   margin-left:350px;
- }
+
  .title{
    font-size: 60px;
  }
@@ -56,13 +57,18 @@
 }
 .city-pic{
   margin-bottom:15px;
+  height:17vw ;
+  width:17vw ;
 }
 .user-city{
-  margin-top: 150px;
+  margin-top: 50px;
 }
 .prof-city{
-  height:6.5vw;
-  width:6.5vw;
+  height:13vw !important;
+  width:13vw !important;
+}
+.user-info-city{
+  margin-top: 15px;
 }
 .prof-bookings{
   margin-top: 70px;
@@ -105,9 +111,28 @@
 .add-comment-box{
   margin-left: 25px;
 }
+
+.booking-yard-pic{
+  height:18vw;
+  width:18vw;
+}
+.booking-prof-pic{
+  height:18vw;
+  width:18vw;
+}
 .show-yard-pic{
-  height:26vw;
-  width:26vw;
+  height:34vw;
+  width:34vw;
+}
+.yard-info{
+  margin-top:50px;
+}
+.prof-yard-show{
+  margin-top: 100px;
+}
+.big-btn{
+  font-size:22px !important;
+  margin-left:300px;
 }
 .cool-btn {
 	-moz-box-shadow: 3px 4px 0px 0px #899599;
@@ -145,4 +170,7 @@
 .cool-btn:active {
 	position:relative;
 	top:1px;
+}
+.signup-form{
+  margin:20px;
 }

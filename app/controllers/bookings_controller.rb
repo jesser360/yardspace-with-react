@@ -58,6 +58,15 @@ def update
   redirect_to :back
 end
 
+# def start_time
+#     :start_time => start_date ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship
+# end
+#
+# def end_time
+#     :end_time => @booking.end_date ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship
+# end
+
+
 private
 
 def create_booking_params
