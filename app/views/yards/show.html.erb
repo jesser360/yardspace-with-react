@@ -30,13 +30,13 @@
                   <%@stars = @yard.rating / @yard.r_count%>
                   <%end%>
                   <h3><%= @stars %>/10 rating by <%=@yard.r_count%> users</h3>
-
+          <%if logged_in? && @curr_user.id == current_user.id%>
              <%= form_for @yard, :class => 'form-group', :url => update_rating_yard_path_url(@yard) do |f| %>
                 <%= f.label :rating %>
                 <%= f.number_field :rating, :value => 0, :max => 10, :min => 1, :class=>"mx-sm-3" %>
                 <%= f.submit "Rate", :class => "text-muted btn-primary btn-xs" %>
               <% end %>
-
+          <%end%>
               <h3><%= @yard.description%></h3>
               <br>
                 <%if @yard.kid_and_pet_friendly%>

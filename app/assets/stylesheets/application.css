@@ -67,6 +67,10 @@
   height:13vw !important;
   width:13vw !important;
 }
+.book-prof{
+  height:17vw !important;
+  width:17vw !important;
+}
 .user-info-city{
   margin-top: 15px;
 }
@@ -126,6 +130,8 @@
 }
 .yard-info{
   margin-top:50px;
+  border: 1px solid gray;
+  background: pink;
 }
 .prof-yard-show{
   margin-top: 100px;
