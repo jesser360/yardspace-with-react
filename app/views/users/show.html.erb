@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-4">
+    <div class="col-xs-4 prof-pic">
       <h2><%= @user.name%></h2>
-      <%= image_tag('http://i.imgur.com/IulSm39.jpg')%><br/>
+      <img class="profilePic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
       <%if logged_in? && @user.id == current_user.id%>
-          <%= link_to 'Edit Profile',edit_user_path_url(@user)%><br/>
-          <%= link_to 'sent requests',sent_bookings_path_url(@user)%><br/>
-          <%= link_to 'incoming requests',incoming_bookings_path_url(@user)%><br/>
+          <%= link_to edit_user_path_url(@user) do %>
+          <h3><span class=" glyphicon glyphicon-pencil"></span></h3>
+          <%end%>
 
       <%else%>
       <%if logged_in? && @user.id != current_user.id%>
@@ -17,42 +17,36 @@
       <%end%>
 
     </div>
-    <div class="col-xs-4 text-left">
-      <br/><br/>
-      <br/><br/>
-      <br/><br/>
-      <h4><%= @user.email%></h4>
-      <h4><%= @user.age%></h4>
-      <h4><%= @user.bio%></h4>
-      <h4><%= @user.gear%></h4>
-    </div>
-    <div class="col-xs-4 text-center">
-      <br/><br/>
-      <br/><br/>
-      <br/><br/>
+    <div class="col-xs-4 prof-info">
       <%if @user.is_hosting%>
-      <h4>they are hosting campers!</h4>
+      <h3 style="color:green">They are hosting campers!</h3>
       <%else%>
-      <h4>not hosting at the moment</h4>
+      <h3 style="color:red">Not hosting at the moment</h3>
       <%end%>
-      <%if @user.is_traveling%>
-      <h4>looking for places to camp</h4>
-      <%else%>
-      <h4>not looking to camp right now</h4>
+      <h4>Email: <%= @user.email%></h4>
+      <h4>Age: <%= @user.age%></h4>
+      <h4>Bio: <%= @user.bio%></h4>
+      <h4>Gear: <%= @user.gear%></h4>
+    </div>
+    <div class="col-xs-4 prof-bookings text-center">
+      <%if logged_in? && @user.id == current_user.id%>
+      <h3 class>My Bookings</h3>
+      <br /><%= button_to 'sent requests',sent_bookings_path_url(@user), method: 'get', class: 'cool-btn'%><br/>
+      <%= button_to 'incoming requests',incoming_bookings_path_url(@user),  method: 'get', class: 'cool-btn'%><br/>
       <%end%>
     </div>
   </div>
-  <h1> yards</h1>
+  <h1 class ="text-center"> yards</h1>
   <%if logged_in? && @user.id == current_user.id%>
   <%= link_to new_yard_path_url, :method=>'get' do %>
-  <h3>
-    <span class="cart glyphicon glyphicon-plus"></span>
+  <h3 class = "text-center">
+    <span class="cart glyphicon glyphicon-plus"></span><span>Add 1</span>
   </h3>
   <%end%>
   <%end%>
   <div class = "row">
   <% @yards.each do |yard|%>
-  <div class = "col-xs-6">
+  <div class = "col-xs-6 text-center">
   <%=link_to yard_path_url(yard) do %>
   <%= image_tag('http://i.imgur.com/5gkUOut.jpg')%>
   <%end%>

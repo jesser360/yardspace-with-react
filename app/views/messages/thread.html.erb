@@ -18,13 +18,14 @@
     <%= msg %>
   </div>
   <% end %>
+  <br /><br />
   <%=link_to messages_path_url(@curr_user) do %>
   <h3><span class ="glyphicon glyphicon-arrow-left"</span><span>Back2Inbox</span></h3>
   <%end%>
-<h1>Messages with <%=@other_user.name%></h1>
+<h1 style ="margin-left:30px">Messages with <%=@other_user.name%></h1>
 <br />
 <div class ="message-box row">
-<% @all_messages.each do |msg|%>
+<% @total_messages.each do |msg|%>
 <% @sender = User.find_by_id(msg.sender_id)%>
 <div class = "col-xs-2 text-center">
   <%=link_to user_path_url(@sender) do %>

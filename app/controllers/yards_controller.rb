@@ -17,6 +17,8 @@ def create
   @yard.zipcode = yard_params[:zipcode]
   @yard.kid_and_pet_friendly = yard_params[:kid_and_pet_friendly]
   @yard.fire_friendly = yard_params[:fire_friendly]
+  @yard.rating = 0
+  @yard.r_count = 0
   @yard.user = @curr_user
   if @yard.save
     redirect_to user_path_url(@curr_user)
@@ -97,7 +99,7 @@ def fetch_weather city
     elsif city == 'los_angeles'
       zipcode = 90001
     end
-   @response = HTTParty.get("http://api.openweathermap.org/data/2.5/forecast/daily?zip=#{zipcode}&cnt=5&APPID=56816b6400cf26a5068b34d20251372f")
+   @response = HTTParty.get("http://api.openweathermap.org/data/2.5/forecast/daily?zip=#{zipcode}&cnt=6&APPID=56816b6400cf26a5068b34d20251372f")
  end
 
 
@@ -148,6 +150,15 @@ def fetch_weather city
          @night4_temp = ((1.8*(@night4-273))+32).floor
          @day4_icon = weather_hash.parsed_response['list'][4]['weather'][0]['icon']
          @day4_des = weather_hash.parsed_response['list'][4]['weather'][0]['description']
+
+         @date5 = weather_hash.parsed_response['list'][5]['dt']
+         @day5_date = Time.at(@date5).to_date.strftime("%m/%d")
+         @day5 = weather_hash.parsed_response['list'][5]['temp']['day']
+         @day5_temp = ((1.8*(@day5-273))+32).floor
+         @night5 = weather_hash.parsed_response['list'][5]['temp']['night']
+         @night5_temp = ((1.8*(@night5-273))+32).floor
+         @day5_icon = weather_hash.parsed_response['list'][5]['weather'][0]['icon']
+         @day5_des = weather_hash.parsed_response['list'][5]['weather'][0]['description']
 
    end
 

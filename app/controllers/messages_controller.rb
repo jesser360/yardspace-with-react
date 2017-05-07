@@ -67,10 +67,10 @@ def thread
   @all_messages = []
   @curr_user = User.find_by_id(session[:user_id])
   @other_user = User.find_by_id(params[:id])
+  p @other_user.name
   @all_sent = Message.where(receiver_id: @curr_user.id.to_s).where(sender_id: @other_user)
   @all_received = Message.where(receiver_id: @other_user.id.to_s).where(sender_id: @curr_user)
-  @all_messages = @all_received + @all_sent
-  @all_messages = Message.all.sort_by {|m| m.created_at }
+  @total_messages = @all_received + @all_sent
   @message = Message.new
 end
 

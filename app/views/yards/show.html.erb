@@ -16,16 +16,20 @@
   </head>
   <body>
     <%= render 'partials/navbar' %>
-
+    <br /><br /><br />
         <div class="container">
           <div class="row">
-            <div class="col-md-6">
-              <h1><%=@yard.title%></h1>
-              <p><%= @yard.rating || 0 %>
-                stars by
-                <%= @yard.r_count || 0%>
-                people</p>
-              <%= image_tag('http://i.imgur.com/5gkUOut.jpg')%><br/>
+            <div class="col-md-4">
+                  <img class="show-yard-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+            </div>
+            <div class="col-md-4">
+                  <h1><%=@yard.title%></h1>
+                  <%if @yard.r_count == 0%>
+                  <%@stars = @yard.rating / 1%>
+                  <%else%>
+                  <%@stars = @yard.rating / @yard.rcount%>
+                  <%end%>
+                  <p><%= @stars %> stars</p>
               <%= @yard.description%>
               <br>
                 <%if @yard.kid_and_pet_friendly%>
@@ -45,8 +49,8 @@
                 <%end%>
               <%end%>
             </div>
-            <div class="col-md-6">
-              <h4><%= @yard.user.name%></h4>
+            <div class="col-md-4">
+              <h3><%= @yard.user.name%></h3>
               <%=link_to user_path_url(@yard.user) do %>
               <%= image_tag('http://i.imgur.com/IulSm39.jpg')%><br/>
               <%end%>
@@ -58,7 +62,8 @@
             </div>
           </div>
           <div class="row">
-            <h2 class="text-center">Comments</h2>
+            <br />
+            <h2 class="text-center">Reviews</h2>
             <% if logged_in?%>
             <div class="add-comment-box text-center">
               <%= form_for(:comment, :url => create_comment_path_url(@comment), html: {method: :post}) do |f| %>

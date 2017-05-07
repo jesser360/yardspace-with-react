@@ -18,6 +18,7 @@
     <%= msg %>
   </div>
   <% end %>
+  <br /><br />
   <div class ="container">
 <h1>Message inbox</h1>
 <%@unique_user.each do |uq_user|%>
@@ -29,7 +30,7 @@
     <%end%>
   </div>
   <div class ="col-xs-4 see-msg-btn">
-<h3><%= link_to 'See conversation', messages_thread_path_url(uq_user), :method => 'get'%></h3>
+<h3><%= button_to 'See conversation', messages_thread_path_url(uq_user), :method => 'get', class: 'cool-btn'%></h3>
   </div>
 </div>
 <%end%>

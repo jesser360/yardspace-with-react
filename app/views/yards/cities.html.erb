@@ -16,92 +16,113 @@
   </head>
   <body>
     <%= render 'partials/navbar' %>
-
-        <div class="row text-center weather">
-          <div class="col-xs-2">
-            <%= @day0_date%><br/>
-            <%=image_tag('http://openweathermap.org/img/w/'+@day0_icon+'.png')%><br/>
-            <%= @day0_des%>
-            <p>Day:
-              <%= @day0_temp%>
-              F</p>
-            <p>Night:
-              <%= @night0_temp%>
-              F</p>
-          </div>
-          <div class="col-xs-2">
-            <%= @day1_date%><br/>
-            <%=image_tag('http://openweathermap.org/img/w/'+@day1_icon+'.png')%><br/>
-            <%= @day1_des%>
-            <p>Day:
-              <%= @day1_temp%>
-              F</p>
-            <p>Night:
-              <%= @night1_temp%>
-              F</p>
-          </div>
-          <div class="col-xs-2">
-            <%= @day2_date%><br/>
-            <%=image_tag('http://openweathermap.org/img/w/'+@day2_icon+'.png')%><br/>
-            <%= @day2_des%>
-            <p>Day:
-              <%= @day2_temp%>
-              F</p>
-            <p>Night:
-              <%= @night2_temp%>
-              F</p>
-          </div>
-          <div class="col-xs-2">
-            <%= @day3_date%><br/>
-            <%=image_tag('http://openweathermap.org/img/w/'+@day3_icon+'.png')%><br/>
-            <%= @day3_des%>
-            <p>Day:
-              <%= @day3_temp%>
-              F</p>
-            <p>Night:
-              <%= @night3_temp%>
-              F</p>
-          </div>
-          <div class="col-xs-2">
-            <%= @day4_date%><br/>
-            <%=image_tag('http://openweathermap.org/img/w/'+@day4_icon+'.png')%><br/>
-            <%= @day4_des%>
-            <p>Day:
-              <%= @day4_temp%>
-              F</p>
-            <p>Night:
-              <%= @night4_temp%>
-              F</p>
-          </div>
-          <div class="col-xs-2">
-            <%= button_to 'see more','https://weather.com/', class: "btn btn-large"%>
-          </div>
-        </div>
+    <br /><br />
+    <div class="row text-center weather">
+      <div class="col-xs-2">
+        <%= @day0_date%><br/>
+        <%=image_tag('http://openweathermap.org/img/w/'+@day0_icon+'.png')%><br/>
+        <%= @day0_des%>
+        <p>Day:
+          <%= @day0_temp%>
+          F</p>
+        <p>Night:
+          <%= @night0_temp%>
+          F</p>
+      </div>
+      <div class="col-xs-2">
+        <%= @day1_date%><br/>
+        <%=image_tag('http://openweathermap.org/img/w/'+@day1_icon+'.png')%><br/>
+        <%= @day1_des%>
+        <p>Day:
+          <%= @day1_temp%>
+          F</p>
+        <p>Night:
+          <%= @night1_temp%>
+          F</p>
+      </div>
+      <div class="col-xs-2">
+        <%= @day2_date%><br/>
+        <%=image_tag('http://openweathermap.org/img/w/'+@day2_icon+'.png')%><br/>
+        <%= @day2_des%>
+        <p>Day:
+          <%= @day2_temp%>
+          F</p>
+        <p>Night:
+          <%= @night2_temp%>
+          F</p>
+      </div>
+      <div class="col-xs-2">
+        <%= @day3_date%><br/>
+        <%=image_tag('http://openweathermap.org/img/w/'+@day3_icon+'.png')%><br/>
+        <%= @day3_des%>
+        <p>Day:
+          <%= @day3_temp%>
+          F</p>
+        <p>Night:
+          <%= @night3_temp%>
+          F</p>
+      </div>
+      <div class="col-xs-2">
+        <%= @day4_date%><br/>
+        <%=image_tag('http://openweathermap.org/img/w/'+@day4_icon+'.png')%><br/>
+        <%= @day4_des%>
+        <p>Day:
+          <%= @day4_temp%>
+          F</p>
+        <p>Night:
+          <%= @night4_temp%>
+          F</p>
+      </div>
+      <div class="col-xs-2">
+        <%= @day5_date%><br/>
+        <%=image_tag('http://openweathermap.org/img/w/'+@day5_icon+'.png')%><br/>
+        <%= @day5_des%>
+        <p>Day:
+          <%= @day5_temp%>
+          F</p>
+        <p>Night:
+          <%= @night5_temp%>
+          F</p>
+      </div>
+    </div>
+    <div class="container">
         <%if @yards.present?%>
-          <%@yards.each do |yard|%>
-          <%if yard.user.is_hosting == true%>
-          <h3><%= yard.title%></h3>
-            <%=link_to yard_path_url(yard) do %>
-              <%= image_tag('http://i.imgur.com/5gkUOut.jpg')%>
-            <%end%>
+        <%@yards.each do |yard|%>
+        <div class="row yard-city">
+        <%if yard.user.is_hosting == true%>
+        <div class="col-xs-3">
+          <h2><%= yard.title%></h2>
+          <%=link_to yard_path_url(yard) do %>
+          <img class="city-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+          <%end%>
+        </div>
+        <div class="col-xs-3 yard-city-details">
           <%if yard.kid_and_pet_friendly%>
-            <p>Kid and Pet friendly!</p>
+          <h3 class ="text-left">Kid and Pet friendly!</h3>
           <%else%>
-            <p>No pets or kids sadly</p>
+          <h3 class ="text-left">No pets or kids sadly</h3>
           <%end%>
+          <h4 class ="text-left"><%= yard.zipcode%></h4>
           <%if yard.fire_friendly%>
-            <span class = "glyphicon glyphicon-fire"></span><br />
+          <h3 class ="text-left"><span class="glyphicon glyphicon-fire"></span></h3><br/>
           <%end%>
-          <%= yard.zipcode%>
-        <hr/>
+        </div>
+        <div class="col-xs-6 user-city">
+          <%=link_to user_path_url(yard.user) do %>
+          <img class="prof-city" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
           <%end%>
+          <%=yard.user.name%>
+        </div>
+      </div>
         <%end%>
-        <%else%>
-        <h3>OMG, no yards in this city, be the first</h3>
-          <%if logged_in?%>
-            <%= button_to 'post your yard',new_yard_path_url, :method=>'get'%>
-          <%end%>
-        <%end%>
+      <%end%>
+      <%else%>
+      <h3>OMG, no yards in this city, be the first</h3>
+      <%if logged_in?%>
+      <%= button_to 'post your yard',new_yard_path_url, :method=>'get'%>
+      <%end%>
+      <%end%>
 
-      </body>
-    </html>
+    </div>
+  </body>
+</html>

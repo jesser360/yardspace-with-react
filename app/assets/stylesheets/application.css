@@ -39,16 +39,57 @@
   width:4vw;
 }
 .reply-msg{
-  margin:50px;
+  margin-left:50px;
+  margin-bottom: 50px;
+  margin-top: -40px;
 }
 .see-msg-btn{
   margin-top: 100px;
+}
+
+.yard-city-details{
+  margin-top: 60px;
+}
+.yard-city{
+  border: 1px solid gray;
+  margin:15px;
+}
+.city-pic{
+  margin-bottom:15px;
+}
+.user-city{
+  margin-top: 150px;
+}
+.prof-city{
+  height:6.5vw;
+  width:6.5vw;
+}
+.prof-bookings{
+  margin-top: 70px;
+}
+.prof-pic{
+  margin-top: 40px;
+}
+.prof-info{
+  margin-top: 60px;
+}
+.profilePic {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  height: auto;
+  width: auto;
+  max-width: 260px;
+  max-height: 260px;
+  border:3px solid black;
+  -webkit-box-shadow: 1px 1px 1px 1px #fff;
+  -moz-box-shadow: 1px 1px 1px 1px #fff;
+  box-shadow: 1px 1px 1px 1px #fff;
 }
  .nav{
     width: 100%;
     margin: 0 auto;
     background-color: transparent;
-    z-index: 1;
     font-size: 20px;
  }
  .message-thread{
@@ -63,4 +104,45 @@
 }
 .add-comment-box{
   margin-left: 25px;
+}
+.show-yard-pic{
+  height:26vw;
+  width:26vw;
+}
+.cool-btn {
+	-moz-box-shadow: 3px 4px 0px 0px #899599;
+	-webkit-box-shadow: 3px 4px 0px 0px #899599;
+	box-shadow: 3px 4px 0px 0px #899599;
+	background:-moz-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-webkit-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-o-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:-ms-linear-gradient(top, #ededed 5%, #bab1ba 100%);
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+	background-color:#ededed;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:#3a8a9e;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+.cool-btn:hover {
+	background:-moz-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-webkit-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-o-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:-ms-linear-gradient(top, #bab1ba 5%, #ededed 100%);
+	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+	background-color:#bab1ba;
+}
+.cool-btn:active {
+	position:relative;
+	top:1px;
 }
