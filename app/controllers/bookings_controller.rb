@@ -6,6 +6,7 @@ def new
   @yard = Yard.find_by_id(params[:yard_id.to_s])
   @host = User.find_by_id(@yard.user.id.to_s)
   @camper= User.find_by_id(session[:user_id])
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
 end
 
 def destroy
@@ -37,18 +38,21 @@ def create
     flash[:error]= @booking.errors.full_messages.join(", ")
     redirect_to :back
   end
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
 end
 
 def sent
   @curr_user = User.find_by_id(session[:user_id])
   @pending_bookings = Booking.where(camper_id: @curr_user.id).where(is_answered: false)
   @answered_bookings = Booking.where(camper_id: @curr_user.id).where(is_answered: true)
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
 end
 
 def incoming
   @curr_user = User.find_by_id(session[:user_id])
   @incoming_pending_bookings = Booking.where(host_id: @curr_user.id).where(is_answered: false)
   @incoming_answered_bookings = Booking.where(host_id: @curr_user.id).where(is_accepted: true)
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
 end
 
 def update
@@ -56,6 +60,7 @@ def update
   @booking = Booking.find_by_id(params[:id])
   @booking.update(update_booking_params)
   redirect_to :back
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
 end
 
 # def start_time

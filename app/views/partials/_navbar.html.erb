@@ -32,8 +32,9 @@
       <div class ="col-xs-2">
         <% if User.find_by_id(session[:user_id]) %>
           <p class = "pull-right"><%= link_to messages_path_url(User.find_by_id(session[:user_id])) do%>
-            <span>Inbox <span class="cart glyphicon glyphicon-inbox"></span></p>
-          <%end%>
+            <span>Inbox <span class="cart glyphicon glyphicon-inbox"></span>
+            <%end%>
+          <span style="color:red"><%=@inbox.count%></span></p>
       <%end%>
     </div>
     <div class ="col-xs-2">

@@ -10,6 +10,7 @@ end
 
 def create
   @curr_user = User.find_by_id(current_user.id.to_s)
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
   @yard = Yard.new()
   @yard.title = yard_params[:title]
   @yard.description = yard_params[:description]
@@ -32,6 +33,7 @@ def show
   if(logged_in?)
   @comment = Comment.new()
   @curr_user = User.find_by_id(current_user.id.to_s)
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
   end
   @yard = Yard.find_by_id(params[:id])
   @comments = Comment.where(yard_id: @yard.id.to_s)
@@ -53,6 +55,7 @@ end
 
 def update
   @curr_user = User.find_by_id(current_user.id.to_s)
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
   @yard = Yard.find_by_id(params[:id])
   if @yard.update(yard_params)
     redirect_to user_path_url(@curr_user)
@@ -64,6 +67,7 @@ end
 
 def updateRating
   @curr_user = User.find_by_id(current_user.id.to_s)
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
   @yard = Yard.find_by_id(params[:id])
   @yard.r_count += 1
   @yard.rating += yard_rating_params[:rating].to_i
@@ -73,6 +77,7 @@ end
 
 def cities
   @curr_user = User.find_by_id(session[:user_id]) if session[:user_id]
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
   @yards = Yard.where(city: params[:city])
   @city = params[:city]
   weather_hash = fetch_weather params[:city]

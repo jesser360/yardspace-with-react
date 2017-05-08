@@ -17,4 +17,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def inbox
+    @user = User.find_by_id(session[:user_id]) if session[:user_id]
+    @inbox = Message.where(receiver_id: @user).where(is_read: false)
+  end
+
 end

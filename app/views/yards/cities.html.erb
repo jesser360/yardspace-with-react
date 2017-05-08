@@ -129,11 +129,14 @@
       <%end%>
       <%else%>
       <h3>OMG, no yards in this city, be the first</h3>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <%if logged_in?%>
       <%= button_to 'post your yard',new_yard_path_url, :method=>'get'%>
       <%end%>
       <%end%>
 
     </div>
+    <%= render 'partials/footer' %>
+
   </body>
 </html>

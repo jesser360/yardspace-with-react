@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def create
     @curr_user = User.new(user_params)
+    @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
     puts @curr_user
     if @curr_user.save
       flash[:success] = "Welcome!"
@@ -18,15 +19,18 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_id(params[:id])
+    @inbox = Message.where(receiver_id: @user).where(is_read: false)
     @yards = @user.yards
   end
 
   def edit
   @curr_user = User.find_by_id(params[:id])
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
   end
 
   def update
     @curr_user = User.find_by_id(params[:id])
+    @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
     @curr_user.update(user_params)
     redirect_to user_path_url(@curr_user)
   end

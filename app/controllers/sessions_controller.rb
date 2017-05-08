@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(email: params[:session][:email])
+    @inbox = Message.where(receiver_id: @user).where(is_read: false)
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
       flash[:success]="You have logged in!"

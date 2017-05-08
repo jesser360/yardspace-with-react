@@ -2,6 +2,7 @@ class MessagesController < ActionController::Base
 
 def new
   @curr_user = User.find_by_id(session[:user_id])
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
   @sender = User.find_by_id(session[:user_id])
   @receiver = User.find_by_id(params[:user_id])
   @yards = @receiver.yards
@@ -9,6 +10,7 @@ end
 
 def create
   @curr_user = User.find_by_id(session[:user_id])
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
   @sender = User.find_by_id(session[:user_id])
   @message = Message.new(create_message_params)
   @message.is_read = false
@@ -22,21 +24,9 @@ def create
   end
 end
 
-# def reply
-#   @sender = User.find_by_id(session[:user_id])
-#   @message = Message.new(create_message_params)
-#   @message.is_read = false
-#   @message.sender = @sender
-#   if @message.save
-#     redirect_to :back
-#   else
-#     redirect_to :back
-#     flash[:error] = @message.errors.full_messages
-#   end
-# end
-
 def index
   @curr_user = User.find_by_id(session[:user_id])
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
   @received_messages = Message.where(receiver_id: @curr_user.id.to_s)
   @sent_messages = Message.where(sender_id: @curr_user.id.to_s)
   @all_messages = @received_messages + @sent_messages
@@ -64,13 +54,17 @@ def index
 end
 
 def thread
-  @all_messages = []
   @curr_user = User.find_by_id(session[:user_id])
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
   @other_user = User.find_by_id(params[:id])
-  p @other_user.name
   @all_sent = Message.where(receiver_id: @curr_user.id.to_s).where(sender_id: @other_user)
   @all_received = Message.where(receiver_id: @other_user.id.to_s).where(sender_id: @curr_user)
   @total_messages = @all_received + @all_sent
+  @total_messages.each do |msg|
+    @msg = Message.find_by_id(msg.id.to_s)
+    @msg.is_read = true
+    @msg.save
+  end
   @message = Message.new
 end
 

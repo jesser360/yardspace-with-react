@@ -2,6 +2,7 @@ class CommentsController < ActionController::Base
 
   def destroy
     @curr_user = User.find_by_id(session[:user_id])
+    @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
     @comment = Comment.find_by_id(params[:id])
     @comment.destroy
     redirect_to :back
@@ -14,6 +15,7 @@ class CommentsController < ActionController::Base
     puts comment_params[:yard_id]
     @curr_user = User.find_by_id(session[:user_id])
     @user= User.find_by_id(session[:user_id])
+    @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
     @comment= Comment.new(comment_params)
     @comment.user = @user
     @comment.save
