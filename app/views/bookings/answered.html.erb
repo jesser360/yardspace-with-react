@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,7 +22,7 @@
       <%=link_to user_path_url(@curr_user) do %>
       <h3><span class ="glyphicon glyphicon-arrow-left"</span><span>Back2Profile</span></h3>
       <%end%>
-<h1 class ="text-center">your incoming camper requests</h1>
+<h2 class ="text-center">Accepted Requests</h2>
 <div class ="row">
   <div class="col-xs-3 text-center">
     <h2>Yard Requested</h2>
@@ -36,52 +37,45 @@
     <h2>Date yyyy/mm/dd</h2>
   </div>
 </div>
-<% if @incoming_pending_bookings.present?%>
-  <% @incoming_pending_bookings.each do |booking|%>
-  <% @camper = User.find_by_id(booking.camper_id)%>
-  <% @yard = Yard.find_by_id(booking.yard_id)%>
-  <div class ="row turq">
-    <div class ="col-xs-1">
-      <%=link_to yard_path_url(@yard) do %>
-      <img class="msg-pic small-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
-      <%end%>
-    </div>
-    <div class ="col-xs-2">
-      <h4><%= @yard.title %> </h4>
-    </div>
-    <div class ="col-xs-2 text-right">
-      <%=link_to user_path_url(@camper) do %>
-      <img class="msg-pic small-pic text-right" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
-      <%end%>
-    </div>
-    <div class ="col-xs-2">
-  <h4><%= @camper.name%> </h4>
+<% if @incoming_answered_bookings.present?%>
+<% @incoming_answered_bookings.each do |booking|%>
+<% @camper = User.find_by_id(booking.camper_id)%>
+<% @yard = Yard.find_by_id(booking.yard_id)%>
+<div class ="row darkgreen" style="padding:10px">
+  <div class ="col-xs-1">
+    <%=link_to yard_path_url(@yard) do %>
+    <img class="msg-pic small-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+    <%end%>
+  </div>
+  <div class ="col-xs-2">
+    <h4><%= @yard.title %> </h4>
+  </div>
+  <div class ="col-xs-2 text-right">
+    <%=link_to user_path_url(@camper) do %>
+    <img class="msg-pic small-pic text-right" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
+    <%end%>
+  </div>
+  <div class ="col-xs-2">
+<h4><%= @camper.name%> </h4>
 </div>
 <div class ="col-xs-2">
-  <h4>group size: <%= booking.group_size %></h4>
-  <%if booking.pets_or_kids%>
-  <h4>Kids and/or pets</h4>
-  <%else%>
-  <h4>No kids or pets</h4>
-  <%end%>
+<h4>group size: <%= booking.group_size %></h4>
+<%if booking.pets_or_kids%>
+<h4>Kids and/or pets</h4>
+<%else%>
+<h4>No kids or pets</h4>
+<%end%>
 </div>
 <div class ="col-xs-3">
-  <h4>From <%= booking.start_date%> to <%= booking.end_date%></h4>
+<h4>From <%= booking.start_date%> to <%= booking.end_date%></h4>
 </div>
 </div>
-<div class ="row">
-  <div class ="col-xs-6 text-right up">
-    <h3><%= button_to 'Accept', update_booking_path_url(booking, :is_accepted => true, :is_answered => true), :method=>'patch', class:'green-btn'%></h3>
-  </div>
-  <div class ="col-xs-6 up">
-    <h3><%= button_to 'Reject', update_booking_path_url(booking, :is_accepted => false, :is_answered => true), :method=>'patch', class:'red-btn'%></h3>
-</div>
-</div>
-<br /><br />
+<hr />
 <%end%>
 <%else%>
-  <h3>none at the moment!</h3>
+<h3>start accepting campers, it'll be fun i swear!</h3>
 <%end%>
+</div>
 
 <%= render 'partials/footer' %>
 

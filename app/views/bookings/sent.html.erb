@@ -7,95 +7,139 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.5/bootstrap-confirmation.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-confirmation/1.0.5/bootstrap-confirmation.js"></script>
   </head>
   <body>
-      <%= render 'partials/navbar' %>
-      <br /><br />
-      <div class ="container">
-        <%=link_to user_path_url(@curr_user) do %>
-        <h3><span class ="glyphicon glyphicon-arrow-left"</span><span>Back2Profile</span></h3>
-        <%end%>
-<h1>sent camping requests</h1>
-<h2>Pending</h2>
-<% if @pending_bookings.present?%>
-  <% @pending_bookings.each do |booking|%>
-    <%= link_to destroy_booking_path_url(booking), :method=>'delete' do %>
-      <span class="glyphicon glyphicon-remove"></span>
+    <%= render 'partials/navbar' %>
+    <br/><br/>
+    <div class="container">
+      <%=link_to user_path_url(@curr_user) do %>
+      <h3>
+        <span <spa class="glyphicon glyphicon-arrow-left" </span>>Back2Profile</span>
+      </h3>
       <%end%>
-  <% @host = User.find_by_id(booking.host_id)%>
-  <% @yard = Yard.find_by_id(booking.yard_id)%>
-  <div class ="row">
-    <div class ="col-xs-4">
-  <h4>host: <%= @host.name%> </h4>
-  <%=link_to user_path_url(@host) do %>
-  <img class="booking-prof-pic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
-  <%end%>
-</div>
-<div class ="col-xs-4">
-  <h4>yard: <%= @yard.title %> </h4>
-  <%=link_to yard_path_url(@yard) do %>
-  <img class="booking-yard-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
-  <%end%>
-  <h4>location: <%= @yard.city %></h4>
-</div>
-<div class ="col-xs-4">
-  <h4>From <%= booking.start_date%> to <%= booking.end_date%></h4>
-  <%= calendar start_date_param: booking.start_date.to_s do |date| %>
-    <%= date %>
-  <% end %>
-</div>
-</div>
-<hr />
-  <%end%>
-<%else%>
-  <h3>none yet, start booking!</h3>
-<%end%>
-<br />
+      <h1 class ="text-center">your sent camping requests..</h1>
+      <div class ="row">
+        <div class="col-xs-3 text-right">
+          <h2>Host</h2>
+        </div>
+        <div class="col-xs-4 text-right">
+          <h2>Yard</h2>
+        </div>
+        <div class="col-xs-3 text-center">
+          <h2>Dates</h2>
+        </div>
+        <div class="col-xs-2 text-center">
+          <h2>Status</h2>
+        </div>
+      </div>
+    <% if @pending_bookings.present?%>
+    <% @pending_bookings.each do |booking|%>
+    <% @host = User.find_by_id(booking.host_id)%>
+    <% @yard = Yard.find_by_id(booking.yard_id)%>
+    <div class="container-fluid">
+      <div class="row lightgreen">
+        <div class="col-xs-1">
+          <%= link_to destroy_booking_path_url(booking), :method=>'delete' do %>
+          <h3>
+            <span class="glyphicon glyphicon-trash " style="margin-left:50px; color:black"></span>
+          </h3>
+          <%end%>
+        </div>
+        <div class="col-xs-1">
+          <%=link_to user_path_url(@host) do %>
+          <img class="msg-pic small-pic" style="margin-left:50px" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
+          <%end%>
+        </div>
+        <div class="col-xs-3">
+          <h3 class="text-center"><%= @host.name%>
+          </h3>
+        </div>
+        <div class="col-xs-1">
+          <%=link_to yard_path_url(@yard) do %>
+          <img class="msg-pic small-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+          <%end%>
+        </div>
+        <div class="col-xs-2">
+          <h3><%= @yard.title %>-<%= @yard.city %>
+          </h3>
+        </div>
+        <div class="col-xs-2">
+          <h3>From
+            <%= booking.start_date%>
+            to
+            <%= booking.end_date%></h3>
+        </div>
+        <div class="col-xs-2">
+          <h2> Requested..</h2>
+        </div>
+      </div>
+    </div>
+    <hr/>
+    <%end%>
+    <%else%>
+    <h3>none yet, start booking!</h3>
+    <%end%>
 
-<h2>Answered</h2>
-<% if @answered_bookings.present?%>
-<% @answered_bookings.each do |booking|%>
-<% @host = User.find_by_id(booking.host_id)%>
-<% @yard = Yard.find_by_id(booking.yard_id)%>
-<div class ="row">
-  <div class ="col-xs-4">
-<h4>host: <%= @host.name%> </h4>
-<%=link_to user_path_url(@host) do %>
-<img class="booking-prof-pic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
-<%end%>
-</div>
-<div class ="col-xs-4">
-<h4>yard: <%= @yard.title %> </h4>
-<%=link_to yard_path_url(@yard) do %>
-<img class="booking-yard-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
-<%end%>
-<h4>location: <%= @yard.city %></h4>
-</div>
-<div class ="col-xs-4">
-  <%if booking.is_accepted %>
-<h3> Status : <span style = 'color:green'>Accepted!</span></h3>
-<%else%>
-<h3> Status : <span style = 'color:red'>Rejected</span></h3>
-<%end%>
-<h4>From <%= booking.start_date%> to <%= booking.end_date%></h4>
-<%= calendar start_date_param: booking.start_date.to_s do |date| %>
-  <%= date %>
-<% end %>
-</div>
-</div>
-<hr />
-<%end%>
-<%else%>
-<h3>none yet, dont worry, they'll get back to you soon!</h3>
-<%end%>
-</div>
-<%= render 'partials/footer' %>
+    <% if @answered_bookings.present?%>
+    <% @answered_bookings.each do |booking|%>
+    <% @host = User.find_by_id(booking.host_id)%>
+    <% @yard = Yard.find_by_id(booking.yard_id)%>
+    <div class="container-fluid">
+    <div class="row darkgreen">
+      <div class="col-xs-1">
+        <%= link_to destroy_booking_path_url(booking), :method=>'delete' do %>
+        <h3>
+          <span class="glyphicon glyphicon-trash" style="margin-left:50px; color:white"></span>
+        </h3>
+        <%end%>
+      </div>
+      <div class="col-xs-1">
+        <%=link_to user_path_url(@host) do %>
+        <img class="msg-pic small-pic" style="margin-left:50px" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
+        <%end%>
+      </div>
+      <div class="col-xs-3">
+        <h3 class="text-center"><%= @host.name%>
+        </h3>
+      </div>
+      <div class="col-xs-1">
+        <%=link_to yard_path_url(@yard) do %>
+        <img class="msg-pic small-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+        <%end%>
+      </div>
+      <div class="col-xs-2">
+        <h3><%= @yard.title %>--<%= @yard.city %>
+        </h3>
+      </div>
+      <div class="col-xs-2">
+        <h3>From
+          <%= booking.start_date%>
+          to
+          <%= booking.end_date%></h3>
+      </div>
+      <div class="col-xs-2">
+        <%if booking.is_accepted%>
+        <h2 style ="color:lightgreen">Accepted!</h2>
+        <%else%>
+        <h2 style="color:red">Rejected</h2>
+        <%end%>
+      </div>
+    </div>
+  </div>
+    <hr/>
+    <%end%>
+    <%else%>
+    <h3>none yet, dont worry, they'll get back to you soon!</h3>
+    <%end%>
+  </div>
+      </div>
+  <%= render 'partials/footer' %>
 
 </body>
 </html>

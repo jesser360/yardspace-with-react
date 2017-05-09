@@ -50,6 +50,8 @@ def destroy
 end
 
 def edit
+  @curr_user = User.find_by_id(current_user.id.to_s)
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
   @yard = Yard.find_by_id(params[:id])
 end
 

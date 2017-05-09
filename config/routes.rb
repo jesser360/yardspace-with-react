@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   patch 'yards/updateRating/:id', to: 'yards#updateRating', as: 'update_rating_yard_path'
   get 'cities/:city', to: 'yards#cities', as: 'city_path'
 
+  get '/bookings/answered', to: 'bookings#answered', as: 'answered_bookings_path'
   get '/bookings/incoming', to: 'bookings#incoming', as: 'incoming_bookings_path'
   get '/bookings/sent', to: 'bookings#sent', as: 'sent_bookings_path'
   get '/bookings/new', to: 'bookings#new', as: 'new_booking_path'
@@ -35,6 +36,7 @@ Rails.application.routes.draw do
   delete '/comments/destroy/:id', to: 'comments#destroy', as: 'destroy_comment_path'
 
   get '/' => 'pages#home'
+  get '/started' => 'pages#started'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'

@@ -1,0 +1,63 @@
+<br /><br /><br />
+
+<div class ="container">
+  <div class= 'row'>
+    <div class ="col-xs-4" style="background-color:#BBE1C3">
+      <div class= 'col-xs-4'>
+        <img class="number num" src="http://i.imgur.com/g6uBAKj.png" alt="number one">
+      </div>
+      <div class= 'col-xs-8'>
+        <h1>Browse a City</h1>
+    </div>
+  </div>
+  <div class ="col-xs-4" style="background-color:#A7CDBD">
+      <div class= 'col-xs-4'>
+        <img class="number num" src="http://i.imgur.com/EGXAAxd.png" alt="number two">
+      </div>
+      <div class= 'col-xs-8'>
+        <h1>Find a yard</h1>
+      </div>
+    </div>
+  <div class = "col-xs-4" style="background-color:#73877B">
+      <div class= 'col-xs-4'>
+        <img class="number num" src="http://i.imgur.com/533ZWr6.png" alt="number three">
+      </div>
+      <div class= 'col-xs-8'>
+        <h1>Book a spot</h1>
+      </div>
+    </div>
+  </div>
+  <div class ="row citiez text-center">
+    <div class ="col-xs-3">
+      <a href='/cities/sf_bay_area'><img class="city-small" src="http://i.imgur.com/Cdbrxfa.jpg" alt="sf bridge"></a>
+      <h3><%=link_to 'SF-Bay Area', '/cities/sf_bay_area', controller: "yards"%></h3>
+    </div>
+    <div class ="col-xs-3">
+      <a href='/cities/santa_cruz'><img class="city-small" src="http://i.imgur.com/6ln7XWN.jpg" alt="sf bridge"></a>
+      <h3><%=link_to 'Santa Cruz', '/cities/santa_cruz', controller: "yards"%></h3>
+    </div>
+    <div class ="col-xs-3">
+      <a href='/cities/lake_tahoe'><img class="city-small" src="http://i.imgur.com/1WshzxK.jpg" alt="sf bridge"></a>
+      <h3><%=link_to 'Lake Tahoe', '/cities/lake_tahoe', controller: "yards"%></h3>
+    </div>
+    <div class ="col-xs-3">
+      <a href='/cities/yosemite'><img class="city-small" src="http://i.imgur.com/CQm0Uo6.jpg" alt="sf bridge"></a>
+      <h3><%=link_to 'Yosemite', '/cities/yosemite', controller: "yards"%></h3>
+    </div>
+  </div>
+  <div class ="row citiez" style="margin-left:140px">
+    <div class ="col-xs-4">
+      <a href='/cities/santa_barbara'><img class="city-small" src="http://i.imgur.com/bUxVI6u.jpg" alt="sf bridge"></a>
+      <h3><%=link_to 'Santa Barbara', '/cities/santa_barbara', controller: "yards"%></h3>
+    </div>
+    <div class ="col-xs-4" style="margin-left:-10px">
+      <a href='/cities/sonoma'><img class="city-small" src="http://i.imgur.com/tBQayMP.gif" alt="sf bridge"></a>
+      <h3><%=link_to 'Sonoma', '/cities/sonoma', controller: "yards"%></h3>
+    </div>
+    <div class ="col-xs-4" style="margin-left:-20px">
+      <a href='/cities/los_angeles'><img class="city-small" src="http://i.imgur.com/MZEytDt.jpg" alt="sf bridge"></a>
+      <h3><%=link_to 'Los Angeles', '/cities/los_angeles', controller: "yards"%></h3>
+    </div>
+</div>
+<br />
+<%= render 'partials/footer' %>

@@ -17,19 +17,76 @@
  body a:hover {
    text-decoration: none;
  }
+ .container{
+   font-family: 'Optima';
+ }
  .learn{
    margin: 130px;
    color:white;
    font-size: 30px;
+   padding:5px;
+   border-radius: 15px;
  }
  .learn a:hover{
+   border: 3px solid white;
    color:lightgray;
  }
  .learn-text{
    color:white;
    font-family: 'Optima';
-
  }
+
+.lightgreen{
+  background-color: #A7CDBD;
+  font-family: 'Optima';
+  border-radius: 20px;
+}
+.darkgreen{
+  background-color: #525B76;
+  font-family: 'Optima';
+  color:white;
+  border-radius: 20px;
+}
+.weather{
+  background-color: #606366;
+  margin:10px;
+  color:white;
+  font-size: 16px;
+}
+.yardz{
+  background-color: #73877B;
+  color:white;
+  border-radius: 20px;
+}
+.number{
+  width: 10vw;
+}
+.numberz{
+  border: 1px solid gray;
+}
+.num{
+  padding:20px;
+}
+
+.city-small{
+  height:12.5vw;
+  width:14.5vw
+}
+.citiez{
+  margin-top:20px;
+}
+.doop{
+  background-color: #D7DE76;
+}
+.raw{
+  background-color: #79B17E;
+}
+.book-btn a:hover{
+  border: 3px solid gray;
+  color:lightgray;
+  padding:5px;
+  border-radius: 15px;
+}
  .black-small{
    background-image: url("http://i.imgur.com/sngrHRA.jpg");
    background-size: contain;
@@ -41,7 +98,7 @@
    background-size: cover;
  }
  .background-image{
-   background-image: url("http://i.imgur.com/4NdOYp9.png");
+   background-image: url("https://lh3.googleusercontent.com/-W8GoXb42Zfo/VkHaWe7y1OI/AAAAAAAAA44/dUyxVlfAnPY/w684-h600/CampfireCinemagraph.gif");
    background-size: cover !important;
    height: 100%;
    width:100%;
@@ -49,7 +106,7 @@
    color:white;
  }
  .main-background{
-   background-image: url("http://i.imgur.com/4NdOYp9.png");
+   background-image: url("https://lh3.googleusercontent.com/-W8GoXb42Zfo/VkHaWe7y1OI/AAAAAAAAA44/dUyxVlfAnPY/w684-h600/CampfireCinemagraph.gif");
    background-size: contain !important;
    height: 100%;
    width:100%;
@@ -62,7 +119,10 @@
    margin-left: 30px;
    font-family: 'Optima';
  }
-.learn-text{
+ .sign-btn{
+   margin-bottom: 300px !important;
+}
+ .learn-text{
   margin:50px;
 }
  .title{
@@ -88,13 +148,22 @@
   margin-top: 60px;
 }
 .yard-city{
-  border: 1px solid gray;
-  margin:15px;
+  padding-left:145px;
+  padding-right:105px;
+  font-family: 'Optima';
+}
+
+.city-back-color{
+  background-color:#73BFB8;
+  border-radius: 20px;
 }
 .city-pic{
   margin-bottom:15px;
   height:17vw ;
   width:17vw ;
+}
+.small-pic{
+  margin-top:15px;
 }
 .user-city{
   margin-top: 50px;
@@ -132,6 +201,19 @@
   -moz-box-shadow: 1px 1px 1px 1px #fff;
   box-shadow: 1px 1px 1px 1px #fff;
 }
+.small-profilePic {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  height: auto;
+  width: auto;
+  max-width: 160px;
+  max-height: 160px;
+  border:3px solid black;
+  -webkit-box-shadow: 1px 1px 1px 1px #fff;
+  -moz-box-shadow: 1px 1px 1px 1px #fff;
+  box-shadow: 1px 1px 1px 1px #fff;
+}
  .nav{
     width: 100%;
     margin: 0 auto;
@@ -151,7 +233,15 @@
 .add-comment-box{
   margin-left: 25px;
 }
-
+.turq{
+  background-color: #A7CDBD;
+  border-radius: 20px;
+  padding:15px;
+  padding-bottom: 54px;
+}
+.up{
+  margin-top: -60px;
+}
 .booking-yard-pic{
   height:18vw;
   width:18vw;
@@ -164,17 +254,87 @@
   height:34vw;
   width:34vw;
 }
-.yard-info{
-  margin-top:50px;
+/*.yard-info{
   border: 1px solid gray;
-  background: pink;
-}
+}*/
 .prof-yard-show{
-  margin-top: 100px;
+  margin-top: 60px;
 }
 .big-btn{
   font-size:22px !important;
   margin-left:300px;
+}
+.red-btn {
+	-moz-box-shadow: 3px 4px 0px 0px #899599;
+	-webkit-box-shadow: 3px 4px 0px 0px #899599;
+	box-shadow: 3px 4px 0px 0px #899599;
+	background:-moz-linear-gradient(top, red 5%, red 100%);
+	background:-webkit-linear-gradient(top, red 5%, red 100%);
+	background:-o-linear-gradient(top, red 5%, red 100%);
+	background:-ms-linear-gradient(top, red 5%, red 100%);
+	background:linear-gradient(to bottom, red 5%, red 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+	background-color:green;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:black;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+}
+.red-btn:hover {
+	background:-moz-linear-gradient(top, darkred 5%, #ededed 100%);
+	background:-webkit-linear-gradient(top, darkred 5%, #ededed 100%);
+	background:-o-linear-gradient(top, darkred 5%, #ededed 100%);
+	background:-ms-linear-gradient(top, darkred 5%, #ededed 100%);
+	background:linear-gradient(to bottom, darkred 5%, #ededed 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+	background-color:#bab1ba;
+}
+.red-btn:active {
+	position:relative;
+	top:1px;
+}
+.green-btn {
+	-moz-box-shadow: 3px 4px 0px 0px #899599;
+	-webkit-box-shadow: 3px 4px 0px 0px #899599;
+	box-shadow: 3px 4px 0px 0px #899599;
+	background:-moz-linear-gradient(top, green 5%, green 100%);
+	background:-webkit-linear-gradient(top, green 5%, green 100%);
+	background:-o-linear-gradient(top, green 5%, green 100%);
+	background:-ms-linear-gradient(top, green 5%, green 100%);
+	background:linear-gradient(to bottom, green 5%, green 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab1ba',GradientType=0);
+	background-color:green;
+	-moz-border-radius:15px;
+	-webkit-border-radius:15px;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+	color:black;
+	font-family:Arial;
+	font-size:17px;
+	padding:7px 25px;
+	text-decoration:none;
+}
+.green-btn:hover {
+	background:-moz-linear-gradient(top, darkgreen 5%, #ededed 100%);
+	background:-webkit-linear-gradient(top, darkgreen 5%, #ededed 100%);
+	background:-o-linear-gradient(top, darkgreen 5%, #ededed 100%);
+	background:-ms-linear-gradient(top, darkgreen 5%, #ededed 100%);
+	background:linear-gradient(to bottom, darkgreen 5%, #ededed 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
+	background-color:#bab1ba;
+}
+.green-btn:active {
+	position:relative;
+	top:1px;
 }
 .cool-btn {
 	-moz-box-shadow: 3px 4px 0px 0px #899599;
@@ -209,9 +369,19 @@
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab1ba', endColorstr='#ededed',GradientType=0);
 	background-color:#bab1ba;
 }
-.cool-btn:active {
+.cool-btn:active{
 	position:relative;
 	top:1px;
+  outline:0;
+}
+.cool-btn:focus{
+  outline:0;
+}
+.red-btn:focus{
+  outline:0;
+}
+.green-btn:focus{
+  outline:0;
 }
 .signup-form{
   margin:20px;

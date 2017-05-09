@@ -85,12 +85,15 @@
           F</p>
       </div>
     </div>
-    <div class="container">
+    <div class ="container">
+
+    <div class= "city-back-color">
         <%if @yards.present?%>
+        <h1 class = "text-center"><%= @city%></h1>
         <%@yards.each do |yard|%>
         <div class="row yard-city">
         <%if yard.user.is_hosting == true%>
-        <div class="col-xs-3 text-center">
+        <div class="col-xs-3 ">
           <h2><%= yard.title%></h2>
           <%=link_to yard_path_url(yard) do %>
           <img class="city-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
@@ -109,32 +112,33 @@
           <%end%>
           <h4 class ="text-left"><%= yard.zipcode%></h4>
           <%if yard.fire_friendly%>
-          <h3 class ="text-left"><span class="glyphicon glyphicon-fire"></span></h3><br/>
+          <h3 class ="text-left"><span class="glyphicon glyphicon-fire"></span><span> Campfires ok</span></h3><br/>
           <%end%>
         </div>
-        <div class="col-xs-3 user-city text-center">
+        <div class="col-xs-2 user-city">
           <%=link_to user_path_url(yard.user) do %>
           <img class="prof-city profilePic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
           <%end%>
-          <h3><%=yard.user.name%></h3>
+          <h3 class="text-center"><%=yard.user.name%></h3>
         </div>
-        <div class="col-xs-3 user-info-city">
+        <br /><br />
+        <div class="col-xs-4 user-info-city text-right">
           <h3>Age: <%= yard.user.age%></h3>
-          <h3>Gear Available: <%= yard.user.gear%></h3>
+          <h3>Yards Available: <%= yard.user.yards.count%></h3>
           <h3>Email: <%= yard.user.email%></h3>
-
         </div>
       </div>
         <%end%>
+        <hr />
       <%end%>
       <%else%>
-      <h3>OMG, no yards in this city, be the first</h3>
-      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <h2 class ="text-center">OMG, no yards in <%=@city%>, be the first</h2>
       <%if logged_in?%>
-      <%= button_to 'post your yard',new_yard_path_url, :method=>'get'%>
+      <h1 class ="text-center"><%= button_to 'post your yard',new_yard_path_url, :method=>'get', :class => 'cool-btn'%></h1>
       <%end%>
+      <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
       <%end%>
-
+</div>
     </div>
     <%= render 'partials/footer' %>
 

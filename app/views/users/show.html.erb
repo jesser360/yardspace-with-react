@@ -1,6 +1,6 @@
-<br /><br />
+<br /><br /><br />
 <div class="container">
-  <div class="row">
+  <div class="row " style="background-color:#73BFB8;border-radius:20px">
     <div class="col-xs-4 prof-pic">
       <h2><%= @user.name%></h2>
       <img class="profilePic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
@@ -20,30 +20,34 @@
     </div>
     <div class="col-xs-4 prof-info">
       <%if @user.is_hosting%>
-      <h3 style="color:green">They are hosting campers!</h3>
+      <h3 style="color:green">Im hosting campers!</h3>
       <%else%>
-      <h3 style="color:red">Not hosting at the moment</h3>
+      <h3 style="color:red">I cant host at the moment</h3>
       <%end%>
       <h4>Email: <%= @user.email%></h4>
       <h4>Age: <%= @user.age%></h4>
       <h4>Bio: <%= @user.bio%></h4>
       <h4>Gear: <%= @user.gear%></h4>
     </div>
-    <div class="col-xs-4 prof-bookings text-center">
-      <%if logged_in? && @user.id == current_user.id%>
+    <%if logged_in? && @user.id == current_user.id%>
+    <div class="col-xs-4 prof-bookings text-center darkgreen" style="margin-left:-20px">
       <h2 class>My Bookings</h2>
       <br /><%= button_to 'sent requests',sent_bookings_path_url(@user), method: 'get', class: 'cool-btn'%><br/>
-      <%= button_to 'incoming requests',incoming_bookings_path_url(@user),  method: 'get', class: 'cool-btn'%><br/>
-      <%end%>
+      <%= button_to 'incoming requests',incoming_bookings_path_url(@user),  method: 'get', class: 'cool-btn'%><span style="font-size:18px"><%if @incoming_pending_bookings.present?%> <span><%=@incoming_pending_bookings.count%> new requests</span><%end%><br/>
+      <%= button_to 'upcoming campers',answered_bookings_path_url(@user),  method: 'get', class: 'cool-btn'%><br/>
+
     </div>
+    <%end%>
   </div>
-  <h1 class ="text-center"> yards</h1>
   <%if logged_in? && @user.id == current_user.id%>
+  <h1 class ="text-center"> My yards</h1>
   <%= link_to new_yard_path_url, :method=>'get' do %>
   <h3 class = "text-center">
     <span class="cart glyphicon glyphicon-plus"></span><span>Add 1</span>
   </h3>
   <%end%>
+  <%else%>
+  <h1 class ="text-center"><%= @user.name%>'s yards</h1>
   <%end%>
   <div class = "row">
   <% @yards.each do |yard|%>

@@ -2,15 +2,16 @@ class BookingsController < ActionController::Base
 
 def new
   @curr_user = User.find_by_id(session[:user_id])
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
   @booking = Booking.new
   @yard = Yard.find_by_id(params[:yard_id.to_s])
   @host = User.find_by_id(@yard.user.id.to_s)
   @camper= User.find_by_id(session[:user_id])
-  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
 end
 
 def destroy
   @curr_user = User.find_by_id(session[:user_id])
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
   @booking = Booking.find_by_id(params[:id])
   if @booking.destroy
     redirect_to :back
@@ -33,7 +34,7 @@ def create
 @booking.pets_or_kids = booking_params[:pets_or_kids]
   if @booking.save
     flash[:success] = "Booking made, check your schedule to confirm details"
-    redirect_to user_path_url(@curr_user)
+    redirect_to sent_bookings_path_url(@curr_user)
   else
     flash[:error]= @booking.errors.full_messages.join(", ")
     redirect_to :back
@@ -51,6 +52,12 @@ end
 def incoming
   @curr_user = User.find_by_id(session[:user_id])
   @incoming_pending_bookings = Booking.where(host_id: @curr_user.id).where(is_answered: false)
+  @incoming_answered_bookings = Booking.where(host_id: @curr_user.id).where(is_accepted: true)
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
+end
+
+def answered
+  @curr_user = User.find_by_id(session[:user_id])
   @incoming_answered_bookings = Booking.where(host_id: @curr_user.id).where(is_accepted: true)
   @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
 end
