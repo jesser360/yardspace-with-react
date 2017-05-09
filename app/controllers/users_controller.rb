@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       redirect_to '/'
       session[:user_id] = @curr_user.id
     else
+      flash[:error] = @curr_user.errors.full_messages
       render 'new'
     end
   end

@@ -20,6 +20,12 @@
  .container{
    font-family: 'Optima';
  }
+ .myAlert {
+  padding: 15px;
+  margin-top: 19px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
  .learn{
    margin: 130px;
    color:white;

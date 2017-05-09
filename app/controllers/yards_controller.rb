@@ -5,6 +5,8 @@ class YardsController < ApplicationController
 
 def new
   @yard = Yard.new
+  @curr_user = User.find_by_id(current_user.id.to_s)
+  @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
 end
 
 
@@ -41,6 +43,8 @@ end
 
 def destroy
   @yard = Yard.find_by_id(params[:id])
+  @bookings = Booking.where(yard_id: @yard.id.to_s)
+  @bookings.delete_all
   if @yard.destroy
     flash[:error] = @yard.title + 'was deleted, never to be seen again..'
     redirect_to :back
@@ -74,6 +78,8 @@ def updateRating
   @yard.r_count += 1
   @yard.rating += yard_rating_params[:rating].to_i
   @yard.save
+  cookies[:rated] = '.' if cookies[:rated].nil?
+  cookies[:rated] += @yard.id.to_s + '.'
   redirect_to :back
 end
 
@@ -112,7 +118,7 @@ def fetch_weather city
       zipcode = 96150
     elsif city == 'yosemite'
       zipcode = 95389
-    elsif city == 'santa_barabara'
+    elsif city == 'santa_barbara'
       zipcode = 93101
     elsif city == 'sonoma'
       zipcode = 95476
