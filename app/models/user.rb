@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 belongs_to :booking, optional: true
 belongs_to :message, optional: true
+belongs_to :friend, optional: true
 has_many :yards
 has_many :comments
 

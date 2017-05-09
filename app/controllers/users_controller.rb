@@ -19,6 +19,12 @@ class UsersController < ApplicationController
   end
 
   def show
+    @curr_user = User.find_by_id(session[:user_id]) if session[:user_id]
+    if @curr_user
+    @friend = Friend.where(me_id: @curr_user.id).where(you_id: params[:id])
+    @ship = Friend.where(you_id: @curr_user.id).where(me_id: params[:id])
+    @friendship = @friend + @ship
+  end
     @user = User.find_by_id(params[:id])
     @inbox = Message.where(receiver_id: @user).where(is_read: false)
     @yards = @user.yards

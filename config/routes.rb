@@ -31,6 +31,10 @@ Rails.application.routes.draw do
   post '/messages', to: 'messages#create', as: 'create_message_path'
   post '/messages', to: 'messages#reply', as: 'create_message_in_thread_path'
 
+  post '/friends/:id', to:'friends#create', as: 'create_friends_path'
+  get '/myfriends/:id', to:'friends#index', as: 'my_friends_path'
+  delete '/friends/delete/:id', to: 'friends#destroy', as: 'destroy_friends_path'
+  patch '/friends/accept/:id', to: 'friends#accept', as: 'accept_friends_path'
 
   post '/comments', to: 'comments#create', as: 'create_comment_path'
   delete '/comments/destroy/:id', to: 'comments#destroy', as: 'destroy_comment_path'

@@ -1,0 +1,70 @@
+<br /><br />
+<div class ="container">
+<div class ="row">
+  <div class ="col-xs-5 text-center">
+    <h1>Friend list</h1>
+  </div>
+  <div class ="col-xs-6 text-center">
+    <h1>Friend Requests</h1>
+  </div>
+</div>
+<div class ="row">
+  <div class="col-xs-6">
+<% @all_friends.each do |friend|%>
+<%@person = User.find_by_id(friend.me_id)%>
+<div class ="row">
+  <div class ="col-xs-5">
+    <%=link_to user_path_url(@person) do %>
+    <img class="small-profilePic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
+    <%end%>
+    <h3><%= link_to destroy_friends_path_url(@person), :method=>'delete' do%>
+      <span class="glyphicon glyphicon-remove" style="color:red"></span>
+      <%end%></h3>
+      <hr />
+    </div>
+  <div class ="col-xs-6">
+  <%if friend.you_id == @curr_user.id%>
+  <h3><%= @person.name%></h3>
+  <h3><%= @person.age%> yrs</h3>
+  <h3><%= @person.yards.count%> available yards</h3>
+  </div>
+</div>
+
+  <%else%>
+  <%@person = User.find_by_id(friend.you_id)%>
+  <%= @person.name%>
+  <%end%>
+  <%end%>
+</div>
+  <div class="col-xs-6">
+<%if @pending_friends%>
+  <% @pending_friends.each do |friend|%>
+    <% @user = User.find_by_id(friend.me_id.to_s)%>
+    <div class ="row">
+      <div class ="col-xs-5">
+    <h3><%= @user.name%></h3>
+    <h3><%= @user.age%> yrs</h3>
+    <h3><%= @user.yards.count%> available yards</h3>
+  </div>
+      <div class ="col-xs-4">
+     <%=link_to user_path_url(@user) do %>
+      <img class="small-profilePic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
+    <%end%>
+  </div>
+</div>
+<br /><br /><br />
+    <div class ="row">
+      <div class ="col-xs-4 text-right up">
+        <h3><%= button_to 'Accept', accept_friends_path_url(@user), :method=>'patch', class:'green-btn'%></h3>
+      </div>
+      <div class ="col-xs-6 up">
+        <h3><%= button_to 'Reject', destroy_friends_path_url(@user), :method=>'delete', class:'red-btn'%></h3>
+    </div>
+    </div>
+    <hr />
+  <%end%>
+<%end%>
+</div>
+</div>
+
+</div>
