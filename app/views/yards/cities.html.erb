@@ -119,19 +119,12 @@
             </h3><br/>
             <%end%>
           </div>
-          <div class="col-xs-2 user-city">
+          <div class="col-xs-6 user-city text-center">
             <%=link_to user_path_url(yard.user) do %>
             <img class="prof-city profilePic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
             <%end%>
             <h3 class="text-center"><%=yard.user.name%></h3>
-          </div>
-          <br/><br/>
-          <div class="col-xs-4 user-info-city text-right">
-            <h3>Yards Available:
-              <%= yard.user.yards.count%></h3>
-            <h3>Email:
-              <%= yard.user.email%></h3>
-          </div>
+            <h3>Yards Available:<%= yard.user.yards.count%></h3>
           <%end%>
         </div>
         <hr/>
