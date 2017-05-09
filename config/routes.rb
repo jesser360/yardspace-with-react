@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   delete '/comments/destroy/:id', to: 'comments#destroy', as: 'destroy_comment_path'
 
   get '/' => 'pages#home'
+  get '/about' => 'pages#about'
   get '/started' => 'pages#started'
   post '/signup' => 'users#create'
   get '/login' => 'sessions#new'
