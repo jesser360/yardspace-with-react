@@ -30,3 +30,12 @@ The app uses features such as a booking system, real time messaging, reviews, an
 <li> HTML </li>
 <li> CSS </li>
 </ul>
+
+<h2>Future Improvements</h2>
+<ul>
+<li>Facebook Login</li>
+<li>Expanding the amount of cities users can host in</li>
+<li>Option to add addition images for a user's yard, with a carousel to display them</li>
+</ul>
+<br>
+<a href ="https://yardspace.herokuapp.com/">Heroku Link</a>
