@@ -14,6 +14,21 @@
  *= require_self
  *= require bootstrap-datepicker
  */
+
+ @media screen and (max-width: 1000px) and (min-width: 100px) {
+   .lnt{
+     color:transparent;
+   }
+   .peakaboo{
+     color:transparent;
+   }
+   .little{
+     font-size: 20px;
+   }
+   .closer{
+     margin:-10px;
+   }
+ }
  body a:hover {
    text-decoration: none;
  }
@@ -38,7 +53,6 @@
  }
  .learn a:hover{
    border: 3px solid white;
-   color:lightgray;
  }
  .learn-text{
    color:white;

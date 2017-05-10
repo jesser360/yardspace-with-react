@@ -8,6 +8,7 @@ class FriendsController < ApplicationController
     @friend.you_id = params[:id]
     @friend.is_accepted = false
       if @friend.save
+        flash[:success]= "friend request sent"
         redirect_to user_path_url(@curr_user)
       else
         redirect_to :back
