@@ -5,13 +5,10 @@ class UsersController < ApplicationController
   end
 
   def create
-    @curr_user = User.new(user_params)
-    @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
-    puts @curr_user
+    @curr_user = User.new(user_params_create)
     if @curr_user.save
-      flash[:success] = "Welcome!"
-      redirect_to '/'
       session[:user_id] = @curr_user.id
+      redirect_to '/'
     else
       flash[:error] = @curr_user.errors.full_messages
       render 'new'
@@ -47,7 +44,10 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email,:name, :age, :bio, :is_hosting, :is_traveling, :gear, :password, :password_confirmation)
+    params.require(:user).permit(:email,:name, :age, :bio, :is_hosting, :is_traveling, :gear)
+  end
+  def user_params_create
+    params.require(:user).permit(:email,:name,:password, :password_confirmation)
   end
 
 end
