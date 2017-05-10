@@ -29,6 +29,7 @@ class UsersController < ApplicationController
     @inbox = Message.where(receiver_id: @user).where(is_read: false)
     @yards = @user.yards
     @incoming_pending_bookings = Booking.where(host_id: @user.id).where(is_answered: false)
+    @pending_friends = Friend.where(you_id: @curr_user).where(is_accepted: false)
   end
 
   def edit

@@ -11,7 +11,9 @@
           <%= link_to my_friends_path_url(@user) do %>
           <h3><span class=" glyphicon glyphicon-user"></span><span>See my friends</span></h3>
           <%end%>
-
+          <%if @pending_friends.present?%>
+          <h4><span style="color:red"><%=@pending_friends.count%> new requests</span></h4>
+          <%end%>
       <%else%>
       <%if logged_in? && @user.id != current_user.id%>
       <%= link_to new_message_path_url(:user_id => @user.id) do%>

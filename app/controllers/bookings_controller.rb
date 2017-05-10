@@ -1,11 +1,13 @@
 class BookingsController < ActionController::Base
 
 def new
+  puts params[:yard_id]
   @curr_user = User.find_by_id(session[:user_id])
   @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
   @booking = Booking.new
-  @yard = Yard.find_by_id(params[:yard_id.to_s])
-  @host = User.find_by_id(@yard.user.id.to_s)
+  @yard = Yard.find_by_id(params[:yard_id])
+  puts @yard
+  @host = User.find_by_id(@yard.user.id)
   @camper= User.find_by_id(session[:user_id])
 end
 
@@ -69,15 +71,6 @@ def update
   redirect_to :back
   @inbox = Message.where(receiver_id: @curr_user).where(is_read: false)
 end
-
-# def start_time
-#     :start_time => start_date ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship
-# end
-#
-# def end_time
-#     :end_time => @booking.end_date ##Where 'start' is a attribute of type 'Date' accessible through MyModel's relationship
-# end
-
 
 private
 
