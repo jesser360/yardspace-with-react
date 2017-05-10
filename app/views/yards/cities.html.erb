@@ -16,7 +16,8 @@
   </head>
   <body>
     <%= render 'partials/navbar' %>
-    <br/><br/>
+    <br/>
+    <h1 class="text-center"><%= @city%></h1>
     <div class="row text-center weather">
       <div class="col-xs-2">
         <%= @day0_date%><br/>
@@ -88,7 +89,6 @@
     <div class="container city-back-color">
 
         <%if @yards.present?%>
-        <h1 class="text-center"><%= @city%></h1>
         <%@yards.each do |yard|%>
         <div class="row yard-city">
           <%if yard.user.is_hosting == true%>

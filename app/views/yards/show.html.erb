@@ -17,61 +17,59 @@
   <body>
     <%= render 'partials/navbar' %>
     <br /><br /><br />
+    <%if @yard.r_count == 0%>
+    <%@stars = @yard.rating / 1%>
+    <%else%>
+    <%@stars = @yard.rating / @yard.r_count%>
+    <%end%>
         <div class="container">
-          <div class="row">
-            <h1 style="margin-left:110px"><%=@yard.title%>--<%=@yard.city%></h1>
+          <div class="row"style="background-color:#86A397;border-radius:20px">
+            <h1 style="margin-left:120px"><%=@yard.title%>--<%=@yard.city%> <span style="font-size:18px"> <%= @stars %>/10 rating</span></h1>
             <div class="col-xs-6 text-right">
+              <%if logged_in? && @curr_user.id == current_user.id%>
+              <% @check = false %>
+              <%if cookies[:rated]%>
+              <% @rated = cookies[:rated].split('.')%>
+              <% @rated.each do |id|%>
+              <%if id == @yard.id.to_s%>
+              <% @check = true %>
+              <%end%>
+              <%end%>
+              <%end%>
+              <%if @check == false%>
+              <%= form_for @yard, :class => 'form-group', :url => update_rating_yard_path_url(@yard) do |f| %>
+              <%= f.label :rating %>
+              <%= f.number_field :rating, :value => 0, :max => 10, :min => 1, :class=>"mx-sm-3" %>
+              <%= f.submit "Rate", :class => "text-muted btn-primary btn-xs" %>
+              <% end %>
+              <%end%>
+              <%end%>
               <%if @yard.image%>
               <img class="show-yard-pic text-center" src='<%=@yard.image%>' alt="profile pic">
               <%else%>
                   <img class="show-yard-pic text-center" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
                 <%end%>
-                  <%if @yard.r_count == 0%>
-                  <%@stars = @yard.rating / 1%>
-                  <%else%>
-                  <%@stars = @yard.rating / @yard.r_count%>
-                  <%end%>
-                  <div class ="row text-center">
-                  <h3><%= @stars %>/10 rating by <%=@yard.r_count%> users</h3>
-                  <%if logged_in? && @curr_user.id == current_user.id%>
-                <% @check = false %>
-                <%if cookies[:rated]%>
-                <% @rated = cookies[:rated].split('.')%>
-                <% @rated.each do |id|%>
-                <%if id == @yard.id.to_s%>
-                <% @check = true %>
-                <%end%>
-                <%end%>
-                <%end%>
-                <%if @check == false%>
-                  <%= form_for @yard, :class => 'form-group', :url => update_rating_yard_path_url(@yard) do |f| %>
-                  <%= f.label :rating %>
-                  <%= f.number_field :rating, :value => 0, :max => 10, :min => 1, :class=>"mx-sm-3" %>
-                  <%= f.submit "Rate", :class => "text-muted btn-primary btn-xs" %>
-                  <% end %>
-                  <%end%>
-                  <%end%>
-                </div>
             </div>
             <div class="col-xs-4 yard-info">
               <div class ="row">
-                <div class ="col-xs-3">
-                  <% if (logged_in? && @curr_user.id.to_s != @yard.user.id.to_s)%>
-                  <%= link_to new_message_path_url(:user_id => @yard.user.id) do%>
-                  <h2 class ="text-right"><span class = "glyphicon glyphicon-envelope"style="color:#86A397"></span></h2>
+                <div class ="col-xs-6">
+                  <h3><%= @yard.user.name%></h3>
+                  <h4><%= @yard.user.yards.count.to_i - 1%> more available yards</h4>
+                  <%=link_to user_path_url(@yard.user) do %>
+                  <%if @yard.user.image%>
+                  <img class="small-profilePic" src="<%=@yard.user.image%>" alt="profile pic">
+                  <%else%>
+                  <img class="small-profilePic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
                   <%end%>
                   <%end%>
                 </div>
-              <div class ="col-xs-9">
-                <h3><%= @yard.user.name%></h3>
-                <h4><%= @yard.user.yards.count.to_i - 1%> more available yards</h4>
-                <%=link_to user_path_url(@yard.user) do %>
-                <%if @yard.user.image%>
-                <img class="small-profilePic" src="<%=@yard.user.image%>" alt="profile pic">
-                <%else%>
-                <img class="small-profilePic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
-                <%end%>                <%end%>
-              </div>
+                <div class ="col-xs-6">
+                  <% if (logged_in? && @curr_user.id.to_s != @yard.user.id.to_s)%>
+                  <%= link_to new_message_path_url(:user_id => @yard.user.id) do%>
+                  <h2 class ="text-left"><span class = "glyphicon glyphicon-envelope"style="color:#31493C"></span></h2>
+                  <%end%>
+                  <%end%>
+                </div>
             </div>
               <h3><%= @yard.description%></h3>
                 <%if @yard.kid_and_pet_friendly%>
@@ -104,11 +102,12 @@
               <%= f.hidden_field :yard_id, :value => @yard.id.to_s%>
               <%= f.submit "post", :controller => 'comments', :class => 'cool-btn' ,:style=>"color:#31493C"%>
             </div>
+            <br />
             <%end%>
           <% else %>
             <h4>sign up to join in the commenting fun</h4>
             <%end%>
-            <div class="comment-box"  style="background-color:#86A397">
+            <div class="comment-box">
               <%@comments.each do |comment| %>
               <h3><%= comment.title%></h3>
               <h4><%= comment.body%>by:  <%= comment.user.name%>

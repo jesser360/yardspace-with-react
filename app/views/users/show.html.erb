@@ -11,7 +11,7 @@
       <%end%>
       <%if logged_in? && @user.id == current_user.id%>
           <%= link_to edit_user_path_url(@user) do %>
-          <h3><span class=" glyphicon glyphicon-pencil"></span></h3>
+          <h3 class = "text-center"><span class=" glyphicon glyphicon-pencil"></span></h3>
           <%end%>
           <%= link_to my_friends_path_url(@user) do %>
           <h3><span class=" glyphicon glyphicon-user"></span><span>See my friends</span></h3>
@@ -46,10 +46,10 @@
     </div>
     <%if logged_in? && @user.id == current_user.id%>
     <div class="col-xs-4 prof-bookings text-center darkgreen" style="margin-left:-20px">
-      <h2 class>My Bookings</h2>
-      <br /><%= button_to 'sent requests',sent_bookings_path_url(@user), method: 'get', class: 'cool-btn'%><br/>
-      <%= button_to 'incoming requests',incoming_bookings_path_url(@user),  method: 'get', class: 'cool-btn'%><span style="font-size:18px"><%if @incoming_pending_bookings.present?%> <span><%=@incoming_pending_bookings.count%> new requests</span><%end%><br/>
+      <h2 class>My Bookings</h2><br />
       <%= button_to 'upcoming campers',answered_bookings_path_url(@user),  method: 'get', class: 'cool-btn'%><br/>
+      <%= button_to 'sent requests',sent_bookings_path_url(@user), method: 'get', class: 'cool-btn expand'%><br/>
+      <%= button_to 'incoming requests',incoming_bookings_path_url(@user),  method: 'get', class: 'cool-btn'%><span style="font-size:18px"><%if @incoming_pending_bookings.present?%> <span><%=@incoming_pending_bookings.count%> new requests</span><%end%><br/>
 
     </div>
     <%end%>

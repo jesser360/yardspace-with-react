@@ -70,6 +70,9 @@
   color:white;
   border-radius: 20px;
 }
+.aabout{
+  margin:50px;
+}
 .weather{
   background-color: #606366;
   margin:10px;
@@ -91,7 +94,10 @@
   padding:20px;
   box-shadow: 3px 3px 2px #888888;
 }
-
+.gray{
+  color:lightblue !important;
+  font-weight: bold;
+}
 .city-small{
   height:12.5vw;
   width:14.5vw;
@@ -146,7 +152,7 @@
    background-size: contain !important;
    height: 100%;
    width:100%;
-   margin-top: -60px;
+   margin-top: -130px;
  }
  .intro-text{
    color:lightgray;
@@ -287,14 +293,11 @@
   height:34vw;
   width:34vw;
 }
-/*.yard-info{
-  border: 1px solid gray;
-}*/
 .prof-yard-show{
   margin-top: 60px;
 }
 .big-btn{
-  font-size:22px !important;
+  font-size:20px !important;
   margin-left:300px;
 }
 .red-btn {
