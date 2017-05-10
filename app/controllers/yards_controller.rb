@@ -20,6 +20,7 @@ def create
   @yard.zipcode = yard_params[:zipcode]
   @yard.kid_and_pet_friendly = yard_params[:kid_and_pet_friendly]
   @yard.fire_friendly = yard_params[:fire_friendly]
+  @yard.image = yard_params[:image]
   @yard.rating = 0
   @yard.r_count = 0
   @yard.user = @curr_user
@@ -95,7 +96,7 @@ end
 private
 
 def yard_params
-  params.require(:yard).permit(:title, :description, :kid_and_pet_friendly, :fire_friendly, :zipcode, :city, :safety)
+  params.require(:yard).permit(:title, :description, :kid_and_pet_friendly, :fire_friendly, :zipcode, :city, :image)
 end
 
 def yard_rating_params

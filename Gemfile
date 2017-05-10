@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 gem "simple_calendar", "~> 2.0"
-
+gem 'aws-sdk'
 gem 'httparty'
 gem 'bootstrap-datepicker-rails', '~> 0.6.21'
 gem 'bcrypt','~>3.1.7'

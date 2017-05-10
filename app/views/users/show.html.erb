@@ -1,9 +1,14 @@
 <br /><br /><br />
 <div class="container">
   <div class="row " style="background-color:#86A397;border-radius:20px">
+    <h1 class="text-center">Prof Page</h1>
     <div class="col-xs-4 prof-pic">
       <h2><%= @user.name%></h2>
+      <%if @user.image%>
+      <img class="profilePic" src="<%=@user.image%>" alt="profile pic">
+      <%else%>
       <img class="profilePic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
+      <%end%>
       <%if logged_in? && @user.id == current_user.id%>
           <%= link_to edit_user_path_url(@user) do %>
           <h3><span class=" glyphicon glyphicon-pencil"></span></h3>
@@ -63,7 +68,11 @@
   <% @yards.each do |yard|%>
   <div class = "col-xs-6 text-center">
   <%=link_to yard_path_url(yard) do %>
-  <%= image_tag('http://i.imgur.com/5gkUOut.jpg')%>
+  <%if yard.image%>
+  <img class="city-pic" src='<%=yard.image%>' alt="profile pic">
+  <%else%>
+      <img class="city-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+    <%end%>
   <%end%>
   <h3><%= yard.title%></h3>
   <%= yard.description%><br/>

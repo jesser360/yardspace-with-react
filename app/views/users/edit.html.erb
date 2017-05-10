@@ -22,6 +22,10 @@
         <%= f.number_field :age, class: "form-control", autofocus: true %>
       </div>
       <div class="form-group">
+        <%= f.label :image, 'Image URL here' %><br>
+        <%= f.text_area :image, class: "form-control", autofocus: true, placeholder: 'upload an image onto imgur and upload here or copy a url' %>
+      </div>
+      <div class="form-group">
         <%= f.label :is_hosting, 'hosting campers currently?' %><br>
         <%= f.check_box :is_hosting, class: "form-control", autofocus: true %>
       </div>

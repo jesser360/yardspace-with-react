@@ -14,11 +14,7 @@
         </div>
         <div class="row">
           <div class ="col-xs-6 pull-left">
-            <% if logged_in?%>
             <%=button_to 'Get Started','/started', :method => 'get', :class => "btn big-btn cool-btn"%>
-            <%else%>
-              <a href = "/signup"><button class="btn big-btn cool-btn">Get Started</button></a>
-              <%end%>
           </div>
       </div>
       <div class = "row">
@@ -62,8 +58,8 @@
         </div>
         <div class ="col-xs-4 text-center box">
           <img class="safe" src="http://i.imgur.com/hOZqo9O.png" alt="number one">
-          <h3>Connect with other users</h3>
-          <h3>about your camping plans</h3>
+          <h3>Request friends and </h3>
+          <h3>discuss camping plans</h3>
         </div>
       </div>
       <br />

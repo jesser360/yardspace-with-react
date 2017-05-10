@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170509200602) do
+ActiveRecord::Schema.define(version: 20170510035255) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 20170509200602) do
     t.boolean  "is_traveling"
     t.text     "gear"
     t.string   "password_digest"
+    t.string   "image"
   end
 
   create_table "yards", force: :cascade do |t|
@@ -90,6 +91,7 @@ ActiveRecord::Schema.define(version: 20170509200602) do
     t.boolean  "kid_and_pet_friendly"
     t.integer  "city"
     t.boolean  "fire_friendly"
+    t.string   "image"
     t.index ["user_id"], name: "index_yards_on_user_id", using: :btree
   end
 

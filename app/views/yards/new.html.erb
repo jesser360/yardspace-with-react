@@ -47,6 +47,9 @@
           <%= f.label :zipcode, 'Provide zipcode for better accuracy' %><br>
           <%= f.number_field :zipcode, class: "form-control" %>
           <br/>
+          <%= f.label :image, 'Attach IMG url here' %><br>
+          <%= f.text_area :image, class: "form-control", placeholder: 'You can also upload an image onto imgur.com and then copy the link here' %>
+          <br />
           <%= f.label :kid_and_pet_friendly, 'Kids and Pets ok?' %><br>
           <%= f.check_box :kid_and_pet_friendly, class: "form-control" %>
           <br/>

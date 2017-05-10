@@ -62,7 +62,11 @@
     <div class="col-md-4 text-center">
       <h3><%= @yard.title%> - <%= @yard.city%></h3>
       <%=link_to yard_path_url(@yard) do %>
-      <img class="city-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+      <%if @yard.image%>
+      <img class="city-pic" src='<%=@yard.image%>' alt="profile pic">
+      <%else%>
+          <img class="city-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+        <%end%>
       <%end%>
         </div>
     <div class="col-md-4 text-center">

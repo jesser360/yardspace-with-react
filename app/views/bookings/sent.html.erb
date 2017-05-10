@@ -62,7 +62,11 @@
         </div>
         <div class="col-xs-1">
           <%=link_to yard_path_url(@yard) do %>
-          <img class="msg-pic small-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+          <%if @yard.image%>
+          <img class="msg-pic small-pic" src='<%=@yard.image%>' alt="profile pic">
+          <%else%>
+              <img class="msg-pic small-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+            <%end%>
           <%end%>
         </div>
         <div class="col-xs-2">
@@ -70,10 +74,8 @@
           </h3>
         </div>
         <div class="col-xs-2">
-          <h3>From
-            <%= booking.start_date%>
-            to
-            <%= booking.end_date%></h3>
+          <h4>From <%= Time.parse(booking.start_date.to_s).to_date.strftime("%B %-d, %y")%> to <%= Time.parse(booking.end_date.to_s).to_date.strftime("%B %-d, %y")%></h4>
+
         </div>
         <div class="col-xs-2">
           <h2> Requested..</h2>
@@ -118,10 +120,8 @@
         </h3>
       </div>
       <div class="col-xs-2">
-        <h3>From
-          <%= booking.start_date%>
-          to
-          <%= booking.end_date%></h3>
+        <h4>From <%= Time.parse(booking.start_date.to_s).to_date.strftime("%B %-d, %y")%> to <%= Time.parse(booking.end_date.to_s).to_date.strftime("%B %-d, %y")%></h4>
+
       </div>
       <div class="col-xs-2">
         <%if booking.is_accepted%>

@@ -95,7 +95,11 @@
           <div class="col-xs-3 ">
             <h2><%= yard.title%></h2>
             <%=link_to yard_path_url(yard) do %>
-            <img class="city-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+            <%if yard.image%>
+            <img class="city-pic" src='<%=yard.image%>' alt="profile pic">
+            <%else%>
+                <img class="city-pic" src="http://i.imgur.com/5gkUOut.jpg" alt="profile pic">
+              <%end%>
             <%end%>
           </div>
           <div class="col-xs-3 yard-city-details">
@@ -121,8 +125,11 @@
           </div>
           <div class="col-xs-6 user-city text-center">
             <%=link_to user_path_url(yard.user) do %>
-            <img class="prof-city profilePic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
-            <%end%>
+            <%if yard.user.image%>
+            <img class="profCity profilePic" src="<%=yard.user.image%>" alt="profile pic">
+            <%else%>
+            <img class="profCity profilePic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
+            <%end%>            <%end%>
             <h3 class="text-center"><%=yard.user.name%></h3>
             <h3>Yards Available:<%= yard.user.yards.count%></h3>
           <%end%>

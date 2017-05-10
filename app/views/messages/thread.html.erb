@@ -29,8 +29,12 @@
 <% @sender = User.find_by_id(msg.sender_id)%>
 <div class = "col-xs-2 text-center">
   <%=link_to user_path_url(@sender) do %>
+  <%if @sender.image%>
+  <img class="msg-pic" src="<%=@sender.image%>" alt="profile pic">
+  <%else%>
   <img class="msg-pic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
   <%end%>
+ <%end%>
     <hr />
 </div>
 <div class ="col-xs-10">
