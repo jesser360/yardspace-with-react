@@ -92,7 +92,28 @@
         <%@yards.each do |yard|%>
         <div class="row yard-city">
           <%if yard.user.is_hosting == true%>
-          <div class="col-xs-3 ">
+          <div class="col-xs-3 yard-city-details">
+            <%if yard.rating > 0 %>
+            <h3 class ="peakaboo">Rating:
+              <%=yard.rating / yard.r_count%>/10</h3>
+              <%else%>
+              <h3 class ="peakaboo">No ratings yet</h3>
+              <%end%>
+              <%if yard.kid_and_pet_friendly%>
+              <h3 class="text-left peakaboo">Kid and Pet friendly!</h3>
+              <%else%>
+              <h3 class="text-left peakaboo">No pets or kids sadly</h3>
+              <%end%>
+              <h4 class="text-left peakaboo"><%= yard.zipcode%></h4>
+              <%if yard.fire_friendly%>
+              <h3 class="text-left">
+                <span class="glyphicon glyphicon-fire peakaboo"></span>
+                <span  class ="peakaboo">
+                  Campfires ok</span>
+                </h3><br/>
+                <%end%>
+              </div>
+          <div class="col-xs-4 ">
             <h2><%= yard.title%></h2>
             <%=link_to yard_path_url(yard) do %>
             <%if yard.image%>
@@ -102,28 +123,7 @@
               <%end%>
             <%end%>
           </div>
-          <div class="col-xs-3 yard-city-details">
-            <%if yard.rating > 0 %>
-            <h3 class ="peakaboo">Rating:
-              <%=yard.rating / yard.r_count%>/10</h3>
-            <%else%>
-            <h3 class ="peakaboo">No ratings yet</h3>
-            <%end%>
-            <%if yard.kid_and_pet_friendly%>
-            <h3 class="text-left peakaboo">Kid and Pet friendly!</h3>
-            <%else%>
-            <h3 class="text-left peakaboo">No pets or kids sadly</h3>
-            <%end%>
-            <h4 class="text-left peakaboo"><%= yard.zipcode%></h4>
-            <%if yard.fire_friendly%>
-            <h3 class="text-left">
-              <span class="glyphicon glyphicon-fire peakaboo"></span>
-              <span  class ="peakaboo">
-                Campfires ok</span>
-            </h3><br/>
-            <%end%>
-          </div>
-          <div class="col-xs-6 user-city text-center">
+          <div class="col-xs-5 user-city text-center">
             <%=link_to user_path_url(yard.user) do %>
             <%if yard.user.image%>
             <img class="profCity profilePic" src="<%=yard.user.image%>" alt="profile pic">
