@@ -6,42 +6,42 @@
       <div class="container">
         <div class="row">
           <div class="col-xs-6  intro-text">
-            <h1 class ="title">Yard Space</h1>
-            <h3>For the adventurer looking to camp on the fly</h3>
+            <h1 class ="title"  style="font-size:12vw">Yard Space</h1>
+            <br /><br />
+            <h1>For the adventurer looking to camp on the fly</h1>
           </div>
 
 
         </div>
         <div class="row">
-          <div class ="col-xs-6 pull-left">
+          <div class ="col-xs-6 text-center">
             <%=button_to 'Get Started','/started', :method => 'get', :class => "btn big-btn cool-btn"%>
           </div>
       </div>
       <%if @curr_user%>
-      <h3 style ="color:lightgray">Welcome <%=@curr_user.name%>, click above or check out your <%=link_to 'profile', user_path_url(@curr_user), :class => 'gray'%></h3>
+      <h1 style ="color:lightgray">Welcome <%=@curr_user.name%>, click above or check out your <%=link_to 'profile', user_path_url(@curr_user), :class => 'gray'%></h1>
       <%end%>
       <div class = "row">
         <div class ="text-center learn">
-          <%= link_to '#learnMore', class:'learn' do %>
-          <span class = "glyphicon glyphicon-arrow-down"  style='color:lightgray'></span><span style='color:lightgray'> Learn More</span>
+          <h2><%= link_to '#learnMore', class:'learn' do %>
+          <span class = "glyphicon glyphicon-arrow-down"  style='color:lightgray'></span><span style='color:lightgray'> Learn More</span></h2>
           <%end%>
         </div>
       </div>
 
     </div>
-    <br />
       <div class ="row black " id="learnMore">
           <div class=" learn-text">
             <h1 class ="text-center">change the way you travel...</h2>
               <div class="col-xs-6">
-            <h3>Yardspace helps urban campers looking to explore new cities and meet locals  </h3>
+            <h2>Yardspace helps urban campers looking to explore new cities and meet locals  </h2>
               <br />
             <h2 class ="text-left">1.Make an account </h2><br />
             <h2 class ="text-center">2.Browse cities</h2><br />
             <h2 class ="text-right">3.Connect and camp!</h3>
           </div>
           <div class="col-xs-6 black-small">
-            <h4 class= "lnt" style='margin-top:350px'>Its always free to camp, please be a respectful camper and leave no trace</h4>
+            <h3 class= "lnt" style='margin-top:350px'>Its always free to camp, please be a respectful camper and leave no trace</h3>
           </div>
         </div>
       </div>
@@ -50,18 +50,18 @@
         <div class ="container">
         <div class ="col-xs-4 text-center box">
           <img class="safe" src="http://i.imgur.com/0cttA29.png" alt="number one">
-          <h3>Message the host before hand</h3>
-          <h3>with questions or concerns</h3>
+          <h1>Message the host before hand</h1>
+          <h1>with questions or concerns</h1>
         </div>
         <div class ="col-xs-4 text-center box">
           <img class="safe" src="http://i.imgur.com/jO0hYT7.png" alt="number one">
-          <h3>Read the reviews and ratings</h3>
-          <h3>of each yard before you book</h3>
+          <h1>Read the reviews and ratings</h1>
+          <h1>of each yard before you book</h1>
         </div>
         <div class ="col-xs-4 text-center box">
           <img class="safe" src="http://i.imgur.com/hOZqo9O.png" alt="number one">
-          <h3>Request friends and </h3>
-          <h3>discuss camping plans</h3>
+          <h1>Request friends and </h1>
+          <h1>discuss camping plans</h1>
         </div>
       </div>
       <br />

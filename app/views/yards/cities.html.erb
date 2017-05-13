@@ -9,6 +9,7 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -94,27 +95,27 @@
           <%if yard.user.is_hosting == true%>
           <div class="col-xs-3 yard-city-details">
             <%if yard.rating > 0 %>
-            <h3 class ="peakaboo">Rating:
-              <%=yard.rating / yard.r_count%>/10</h3>
+            <h2 class ="peakaboo">Rating:
+              <%=yard.rating / yard.r_count%>/10</h2>
               <%else%>
-              <h3 class ="peakaboo">No ratings yet</h3>
+              <h2 class ="peakaboo">No ratings yet</h2>
               <%end%>
               <%if yard.kid_and_pet_friendly%>
-              <h3 class="text-left peakaboo">Kid and Pet friendly!</h3>
+              <h2 class="text-left peakaboo">Kid and Pet friendly!</h2>
               <%else%>
-              <h3 class="text-left peakaboo">No pets or kids sadly</h3>
+              <h2 class="text-left peakaboo">No pets or kids sadly</h2>
               <%end%>
-              <h4 class="text-left peakaboo"><%= yard.zipcode%></h4>
+              <h3 class="text-left peakaboo"><%= yard.zipcode%></h3>
               <%if yard.fire_friendly%>
-              <h3 class="text-left">
+              <h2 class="text-left">
                 <span class="glyphicon glyphicon-fire peakaboo"></span>
                 <span  class ="peakaboo">
                   Campfires ok</span>
-                </h3><br/>
+                </h2><br/>
                 <%end%>
               </div>
           <div class="col-xs-4 ">
-            <h2><%= yard.title%></h2>
+            <h1><%= yard.title%></h1>
             <%=link_to yard_path_url(yard) do %>
             <%if yard.image%>
             <img class="city-pic" src='<%=yard.image%>' alt="profile pic">
@@ -130,8 +131,8 @@
             <%else%>
             <img class="profCity profilePic" src="http://i.imgur.com/IulSm39.jpg" alt="profile pic">
             <%end%>            <%end%>
-            <h3 class="text-center"><%=yard.user.name%></h3>
-            <h3>Yards Available:<%= yard.user.yards.count%></h3>
+            <h2 class="text-center"><%=yard.user.name%>--
+            <%= yard.user.yards.count%> more yards available</h2>
           <%end%>
         </div>
       </div>

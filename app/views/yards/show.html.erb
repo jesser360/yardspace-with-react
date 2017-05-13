@@ -9,6 +9,7 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet">
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -24,7 +25,7 @@
     <%end%>
         <div class="container">
           <div class="row"style="background-color:#86A397;border-radius:20px">
-            <h1 style="margin-left:120px"><%=@yard.title%>--<%=@yard.city%> <span style="font-size:18px"> <%= @stars %>/10 rating</span></h1>
+            <h1 style="margin-left:120px"><%=@yard.title%>--<%=@yard.city%> <span style="font-size:22px"> <%= @stars %>/10 rating</span></h1>
             <div class="col-xs-6 text-right">
               <%if logged_in? && @curr_user.id == current_user.id%>
               <% @check = false %>
@@ -53,8 +54,8 @@
             <div class="col-xs-4 yard-info">
               <div class ="row">
                 <div class ="col-xs-6">
-                  <h3><%= @yard.user.name%></h3>
-                  <h4><%= @yard.user.yards.count.to_i - 1%> more available yards</h4>
+                  <h1><%= @yard.user.name%></h1>
+                  <h2><%= @yard.user.yards.count.to_i - 1%> more available yards</h2>
                   <%=link_to user_path_url(@yard.user) do %>
                   <%if @yard.user.image%>
                   <img class="small-profilePic" src="<%=@yard.user.image%>" alt="profile pic">
@@ -71,7 +72,7 @@
                   <%end%>
                 </div>
             </div>
-              <h3><%= @yard.description%></h3>
+              <h2><%= @yard.description%></h2>
                 <%if @yard.kid_and_pet_friendly%>
                 <h3>Kid and Pet friendly!</h3>
                 <%else%>
@@ -93,7 +94,7 @@
           </div>
           <div class="row">
             <br />
-            <h2 class="text-center">Reviews</h2>
+            <h1 class="text-center">Reviews</h1>
             <% if logged_in?%>
             <div class="add-comment-box text-center">
               <%= form_for(:comment, :url => create_comment_path_url(@comment), html: {method: :post}) do |f| %>
@@ -105,15 +106,15 @@
             <br />
             <%end%>
           <% else %>
-            <h4>sign up to join in the commenting fun</h4>
+            <h3>sign up to join in the commenting fun</h3>
             <%end%>
             <div class="comment-box">
               <%@comments.each do |comment| %>
-              <h3><%= comment.title%></h3>
-              <h4><%= comment.body%>by:  <%= comment.user.name%>
+              <h2><%= comment.title%></h2>
+              <h3><%= comment.body%> -- <%= comment.user.name%>
               <% if (logged_in? && @curr_user.id.to_s == comment.user.id.to_s)%>
               <%= link_to destroy_comment_path_url(comment), :method=>'delete' do %>
-              <span class="glyphicon glyphicon-remove" style="color:red"></span></h4>
+              <span class="glyphicon glyphicon-remove" style="color:red"></span></h3>
               <%end%>
               <%end%>
               <hr />

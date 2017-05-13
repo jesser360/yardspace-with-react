@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     @inbox = Message.where(receiver_id: @user).where(is_read: false)
     if @user && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      redirect_to '/'
+      redirect_to user_path_url(@user)
     else
       flash[:error]= "Incorrect Info"
       render 'new'

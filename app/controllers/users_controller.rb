@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @curr_user = User.new(user_params_create)
     if @curr_user.save
       session[:user_id] = @curr_user.id
-      redirect_to '/'
+      redirect_to '/started'
     else
       flash[:error] = @curr_user.errors.full_messages
       render 'new'
