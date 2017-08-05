@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  get 'hello_world', to: 'hello_world#index'
   get '/users/:id', to: 'users#show', as: 'user_path'
   get '/signup' => 'users#new'
   get '/users/edit/:id', to: 'users#edit', as: 'edit_user_path'
